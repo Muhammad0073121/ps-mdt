@@ -22,34 +22,34 @@ let canSaveWeapon = true;
 var LastName = "";
 var DispatchNum = 0;
 var playerJob = "";
-let rosterLink  = "";
+let rosterLink = "";
 let sopLink = "";
 
 //Set this to false if you don't want to show the send to community service button on the incidents page
-const canSendToCommunityService = false
+const canSendToCommunityService = false;
 
 let impoundChanged = false;
 
 // TEMP CONFIG OF JOBS
 const PoliceJobs = {
-  ['police']: true,
-  ['lspd']: true,
-  ['bcso']: true,
-  ['sast']: true,
-  ['sasp']: true,
-  ['sapr']: true,
-  ['doc']: true,
-  ['lssd']: true,
-}
+  ["police"]: true,
+  ["lspd"]: true,
+  ["bcso"]: true,
+  ["sast"]: true,
+  ["sasp"]: true,
+  ["sapr"]: true,
+  ["doc"]: true,
+  ["lssd"]: true,
+};
 
 const AmbulanceJobs = {
-  ['ambulance']: true,
-}
+  ["ambulance"]: true,
+};
 
 const DojJobs = {
-  ['lawyer']: true,
-  ['judge']: true
-}
+  ["lawyer"]: true,
+  ["judge"]: true,
+};
 
 const MONTH_NAMES = [
   "January",
@@ -89,34 +89,34 @@ function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
 }
 
 var quotes = [
-  'Project Sloth On Top!',
-  'A Discord rewrite fixes everything...',
-  'Does anyone even read these?',
-  'The best way to predict your future is to create it.',
-  'Believe you can and you\'re halfway there.',
-  'In three words I can sum up everything I\'ve learned about life: it goes on.',
-  'The only way to do great work is to love what you do.',
-  'Success is not final, failure is not fatal: it is the courage to continue that counts.',
-  'Life is 10% what happens to us and 90% how we react to it.',
-  'The only true wisdom is in knowing you know nothing.',
-  'If you want to live a happy life, tie it to a goal, not to people or things.',
-  'Happiness is not something ready-made. It comes from your own actions.',
-  'The greatest glory in living lies not in never falling, but in rising every time we fall.',
-  'The only thing necessary for the triumph of evil is for good men to do nothing.',
-  'It does not matter how slowly you go as long as you do not stop.',
-  'The best time to plant a tree was 20 years ago. The second best time is now.',
-  'Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.',
-  'Don\'t watch the clock; do what it does. Keep going.',
-  'You miss 100% of the shots you don\'t take.',
-  'You can\'t go back and change the beginning, but you can start where you are and change the ending.',
-  'It\'s not the years in your life that count. It\'s the life in your years.',
-  'The greatest glory in living lies not in never falling, but in rising every time we fall.',
-  'The two most important days in your life are the day you are born and the day you find out why.',
-  'Success is not how high you have climbed, but how you make a positive difference to the world.',
-]
+  "General Asim is the best! 0_0",
+  "A Discord rewrite fixes everything...",
+  "Does anyone even read these?",
+  "The best way to predict your future is to create it.",
+  "Believe you can and you're halfway there.",
+  "In three words I can sum up everything I've learned about life: it goes on.",
+  "The only way to do great work is to love what you do.",
+  "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+  "Life is 10% what happens to us and 90% how we react to it.",
+  "The only true wisdom is in knowing you know nothing.",
+  "If you want to live a happy life, tie it to a goal, not to people or things.",
+  "Happiness is not something ready-made. It comes from your own actions.",
+  "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+  "The only thing necessary for the triumph of evil is for good men to do nothing.",
+  "It does not matter how slowly you go as long as you do not stop.",
+  "The best time to plant a tree was 20 years ago. The second best time is now.",
+  "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+  "Don't watch the clock; do what it does. Keep going.",
+  "You miss 100% of the shots you don't take.",
+  "You can't go back and change the beginning, but you can start where you are and change the ending.",
+  "It's not the years in your life that count. It's the life in your years.",
+  "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+  "The two most important days in your life are the day you are born and the day you find out why.",
+  "Success is not how high you have climbed, but how you make a positive difference to the world.",
+];
 
 function randomizeQuote() {
-  return randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  return (randomQuote = quotes[Math.floor(Math.random() * quotes.length)]);
 }
 
 function timeAgo(dateParam) {
@@ -124,8 +124,7 @@ function timeAgo(dateParam) {
     return null;
   }
 
-  const date =
-    typeof dateParam === "object" ? dateParam : new Date(dateParam);
+  const date = typeof dateParam === "object" ? dateParam : new Date(dateParam);
   const DAY_IN_MS = 86400000;
   const today = new Date();
   const yesterday = new Date(today - DAY_IN_MS);
@@ -155,13 +154,11 @@ function timeAgo(dateParam) {
 }
 
 function closeContainer(selector) {
-  if (
-       $(selector).css("display") != "none"
-     ) {
-       shouldClose = false;
-       $(selector).fadeOut(50);
-       $(".close-all").css("filter", "none");
-     }
+  if ($(selector).css("display") != "none") {
+    shouldClose = false;
+    $(selector).fadeOut(50);
+    $(".close-all").css("filter", "none");
+  }
 }
 
 $(document).ready(() => {
@@ -209,9 +206,7 @@ $(document).ready(() => {
 
     if (!canInputTag) {
       if ($(".tags-add-btn").hasClass("fa-minus")) {
-        $(".tags-add-btn")
-          .removeClass("fa-minus")
-          .addClass("fa-plus");
+        $(".tags-add-btn").removeClass("fa-minus").addClass("fa-plus");
       }
       $(".tag-input").remove();
       canInputTag = true;
@@ -225,15 +220,23 @@ $(document).ready(() => {
     }
 
     if ($(".gallery-add-btn").hasClass("fa-minus")) {
-      $(".gallery-add-btn")
-        .removeClass("fa-minus")
-        .addClass("fa-plus");
+      $(".gallery-add-btn").removeClass("fa-minus").addClass("fa-plus");
     }
 
-    const { vehicles, tags, gallery, convictions, incidents, properties, fingerprint } = result;
+    const {
+      vehicles,
+      tags,
+      gallery,
+      convictions,
+      incidents,
+      properties,
+      fingerprint,
+    } = result;
 
-    $(".manage-profile-editing-title").html(`You are currently editing ${result["firstname"]} ${result["lastname"]}`);
-    $(".manage-profile-citizenid-input").val(result['cid']);
+    $(".manage-profile-editing-title").html(
+      `You are currently editing ${result["firstname"]} ${result["lastname"]}`
+    );
+    $(".manage-profile-citizenid-input").val(result["cid"]);
     $(".manage-profile-name-input-1").val(result["firstname"]);
     $(".manage-profile-name-input-2").val(result["lastname"]);
     $(".manage-profile-dob-input").val(result["dob"]);
@@ -243,8 +246,11 @@ $(document).ready(() => {
     $(".manage-profile-url-input").val(result["profilepic"] ?? "");
     $(".manage-profile-info").val(result["mdtinfo"]);
     $(".manage-profile-info").removeAttr("disabled");
-    $(".manage-profile-pic").attr("src", result["profilepic"] ?? "img/male.png");
-    $(".manage-profile-active-warrant").css("display", "none")
+    $(".manage-profile-pic").attr(
+      "src",
+      result["profilepic"] ?? "img/male.png"
+    );
+    $(".manage-profile-active-warrant").css("display", "none");
     if (result["warrant"]) {
       $(".manage-profile-active-warrant").css("display", "block");
     }
@@ -256,80 +262,100 @@ $(document).ready(() => {
     $(".convictions-holder").empty();
     $(".profile-incidents-holder").empty();
 
-    let licencesHTML = '<div style="color: #fff; text-align:center;">No Licenses</div>';
+    let licencesHTML =
+      '<div style="color: #fff; text-align:center;">No Licenses</div>';
     let tagsHTML = '<div style="color: #fff; text-align:center;">No Tags</div>';
-    let convHTML = '<div style="color: #fff; text-align:center;">Clean Record</div>';
-    let incidentsHTML = '<div style="color: #fff; text-align:center;">No Incidents</div>';
-    let vehHTML = '<div style="color: #fff; text-align:center;">No Vehicles</div>';
-    let galleryHTML = '<div style="color: #fff; text-align:center;">No Photos</div>';
-    let propertyHTML = '<div style="color: #fff; text-align:center;">No Properties</div>';
+    let convHTML =
+      '<div style="color: #fff; text-align:center;">Clean Record</div>';
+    let incidentsHTML =
+      '<div style="color: #fff; text-align:center;">No Incidents</div>';
+    let vehHTML =
+      '<div style="color: #fff; text-align:center;">No Vehicles</div>';
+    let galleryHTML =
+      '<div style="color: #fff; text-align:center;">No Photos</div>';
+    let propertyHTML =
+      '<div style="color: #fff; text-align:center;">No Properties</div>';
 
     // convert key value pair object of licenses to array
     let licenses = Object.entries(result.licences);
 
     if (licenses.length == 0 || licenses.length == undefined) {
       var licenseTypes = licenseTypesGlobal;
-      licenses = Object.entries(licenseTypes.reduce((licenseType, licenseValue) => (licenseType[licenseValue] = false, licenseType), {}));
+      licenses = Object.entries(
+        licenseTypes.reduce(
+          (licenseType, licenseValue) => (
+            (licenseType[licenseValue] = false), licenseType
+          ),
+          {}
+        )
+      );
     }
 
-    if (licenses.length > 0 && (PoliceJobs[playerJob] !== undefined || DojJobs[playerJob] !== undefined)) {
-      licencesHTML = '';
+    if (
+      licenses.length > 0 &&
+      (PoliceJobs[playerJob] !== undefined || DojJobs[playerJob] !== undefined)
+    ) {
+      licencesHTML = "";
       for (const [lic, hasLic] of licenses) {
         let tagColour = hasLic == true ? "green-tag" : "red-tag";
-        licencesHTML += `<span class="license-tag ${tagColour} ${lic}" data-type="${lic}">${titleCase(lic)}</span>`;
+        licencesHTML += `<span class="license-tag ${tagColour} ${lic}" data-type="${lic}">${titleCase(
+          lic
+        )}</span>`;
       }
 
       if (vehicles && vehicles.length > 0) {
-        vehHTML = '';
-        vehicles.forEach(value => {
-          vehHTML += `<div class="veh-tag" data-plate="${value.plate}">${value.plate} - ${value.model} </div>`
-        })
+        vehHTML = "";
+        vehicles.forEach((value) => {
+          vehHTML += `<div class="veh-tag" data-plate="${value.plate}">${value.plate} - ${value.model} </div>`;
+        });
       }
 
       if (convictions && convictions.length > 0) {
-        convHTML = '';
-        convictions.forEach(value => {
+        convHTML = "";
+        convictions.forEach((value) => {
           convHTML += `<div class="white-tag">${value} </div>`;
-        })
+        });
       }
 
       if (incidents && incidents.length > 0) {
-        incidentsHTML='';
+        incidentsHTML = "";
         // Sort incidents so most recent appear first
-        const sortedIncidents = incidents.sort((a,b) => b.time - a.time);
-        sortedIncidents.forEach(value => {
+        const sortedIncidents = incidents.sort((a, b) => b.time - a.time);
+        sortedIncidents.forEach((value) => {
           incidentsHTML += `<div class="white-tag" data-id=${value.id}>
             <div style="display: flex">
               <div class="incident-number">${value.id}</div>
               <div>
                 ${value.title}
-                <div class="incident-timestamp">${getFormattedDate(new Date(Number(value.time)))}</div>
+                <div class="incident-timestamp">${getFormattedDate(
+                  new Date(Number(value.time))
+                )}</div>
               </div>
             </div>
-          </div>`
-        })
+          </div>`;
+        });
       }
 
       if (properties && properties.length > 0) {
-        propertyHTML = '';
-        properties.forEach(value => {
+        propertyHTML = "";
+        properties.forEach((value) => {
           propertyHTML += `<div class="white-tag" data-location="${value.coords}">${value.label} </div>`;
-        })
+        });
       }
     }
 
     if (tags && tags.length > 0) {
-      tagsHTML = '';
+      tagsHTML = "";
       tags.forEach((tag) => {
         tagsHTML += `<div class="tag">${tag}</div>`;
-      })
+      });
     }
 
     if (gallery && gallery.length > 0) {
-      galleryHTML = '';
-      gallery.forEach(value => {
+      galleryHTML = "";
+      gallery.forEach((value) => {
         galleryHTML += `<img src="${value}" class="gallery-img" onerror="this.src='img/not-found.webp'">`;
-      })
+      });
     }
 
     if (result.isLimited) {
@@ -402,8 +428,8 @@ $(document).ready(() => {
                 <div class="bulletin-bottom-info">
 
                     <div class="bulletin-date">${MyName} - ${timeAgo(
-          Number(time.getTime())
-        )}</div>
+        Number(time.getTime())
+      )}</div>
                 </div>
             </div>`);
       canCreateBulletin = 0;
@@ -427,7 +453,7 @@ $(document).ready(() => {
   );
   $(".contextmenu").on("click", ".remove-bulletin", function () {
     let id = $(this).data("info");
-    let title = $(this).data("status")
+    let title = $(this).data("status");
     $(".bulletin-items-continer")
       .find("[data-id='" + id + "']")
       .remove();
@@ -435,7 +461,7 @@ $(document).ready(() => {
       `https://${GetParentResourceName()}/deleteBulletin`,
       JSON.stringify({
         id: id,
-        title: title
+        title: title,
       })
     );
     if (canCreateBulletin == id) {
@@ -509,9 +535,7 @@ $(document).ready(() => {
         setTimeout(() => {
           $(".gallery-upload-input").css("display", "none");
         }, 250);
-        $(".gallery-add-btn")
-          .removeClass("fa-minus")
-          .addClass("fa-plus");
+        $(".gallery-add-btn").removeClass("fa-minus").addClass("fa-plus");
       }
     }
   });
@@ -519,9 +543,7 @@ $(document).ready(() => {
     if (canSaveProfile == true) {
       canSaveProfile = false;
       $(".manage-profile-save").empty();
-      $(".manage-profile-save").prepend(
-        `<span class="fas fa-check"></span>`
-      );
+      $(".manage-profile-save").prepend(`<span class="fas fa-check"></span>`);
       setTimeout(() => {
         $(".manage-profile-save").empty();
         $(".manage-profile-save").html("Save");
@@ -536,18 +558,18 @@ $(document).ready(() => {
         $(".tags-holder")
           .find("span.tag-input, div.tag")
           .each(function () {
-          if ($(this).text() != "" && $(this).text() != "No Tags") {
-            tags.push($(this).text());
-          }
-        });
+            if ($(this).text() != "" && $(this).text() != "No Tags") {
+              tags.push($(this).text());
+            }
+          });
 
         $(".gallery-inner-container")
-        .find("img")
-        .each(function () {
-          if ($(this).attr("src") != "") {
-            gallery.push($(this).attr("src"));
-          }
-        });
+          .find("img")
+          .each(function () {
+            if ($(this).attr("src") != "") {
+              gallery.push($(this).attr("src"));
+            }
+          });
 
         let pfp = $(".manage-profile-pic").attr("src");
         let newpfp = $(".manage-profile-url-input").val();
@@ -560,16 +582,15 @@ $(document).ready(() => {
         let id = $(".manage-profile-citizenid-input").val();
 
         $(".licenses-holder")
-        .find("span")
-        .each(function(){
-          let type = $(this).data("type")
-          if ($(this).attr('class').includes('green-tag')){
-            licenses[type] = true;
-          }
-          else{
-            licenses[type] = false;
-          }
-        })
+          .find("span")
+          .each(function () {
+            let type = $(this).data("type");
+            if ($(this).attr("class").includes("green-tag")) {
+              licenses[type] = true;
+            } else {
+              licenses[type] = false;
+            }
+          });
 
         const fName = $(".manage-profile-name-input-1").val();
         const sName = $(".manage-profile-name-input-2").val();
@@ -585,7 +606,7 @@ $(document).ready(() => {
             tags: tags,
             gallery: gallery,
             licenses: licenses,
-            fingerprint: $(".manage-profile-fingerprint-input").val()
+            fingerprint: $(".manage-profile-fingerprint-input").val(),
           })
         );
         $(".manage-profile-pic").attr("src", newpfp);
@@ -656,9 +677,7 @@ $(document).ready(() => {
 
         let associated = new Array();
 
-        $(".associated-incidents-user-container").each(function (
-          index
-        ) {
+        $(".associated-incidents-user-container").each(function (index) {
           var cid = $(this).data("id");
           var guilty = false;
           var warrant = false;
@@ -691,10 +710,10 @@ $(document).ready(() => {
             .children("div")
             .each(function (index) {
               if (
-                  ( $(".associated-incidents-user-holder")
-                    .children()
-                    .eq(index)
-                    .data("id") == cid )
+                $(".associated-incidents-user-holder")
+                  .children()
+                  .eq(index)
+                  .data("id") == cid
               ) {
                 charges.push(
                   $(".associated-incidents-user-holder")
@@ -793,18 +812,26 @@ $(document).ready(() => {
         changeActiveDropdownIcon: true,
         imageWidthModalEdit: true,
         btns: [
-          ['foreColor', 'backColor','fontfamily','fontsize','indent', 'outdent'],
-          ['strong', 'em',], ['insertImage'],
-          ['viewHTML'],
-          ['undo', 'redo'],
-          ['formatting'],
-          ['superscript', 'subscript'],
-          ['link'],
-          ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-          ['horizontalRule']
+          [
+            "foreColor",
+            "backColor",
+            "fontfamily",
+            "fontsize",
+            "indent",
+            "outdent",
+          ],
+          ["strong", "em"],
+          ["insertImage"],
+          ["viewHTML"],
+          ["undo", "redo"],
+          ["formatting"],
+          ["superscript", "subscript"],
+          ["link"],
+          ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
+          ["horizontalRule"],
         ],
-    });
-    $(".manage-incidents-reports-content").trumbowyg('html', template);
+      });
+      $(".manage-incidents-reports-content").trumbowyg("html", template);
 
       $(".manage-incidents-tags-holder").empty();
       $(".manage-incidents-officers-holder").empty();
@@ -830,27 +857,11 @@ $(document).ready(() => {
       $(".manage-incidents-editing-title").data("id", 0);
 
       $(".manage-incidents-tags-add-btn").css("pointer-events", "auto");
-      $(".manage-incidents-reports-content").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-officers-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-civilians-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-evidence-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".associated-incidents-tags-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-
+      $(".manage-incidents-reports-content").css("pointer-events", "auto");
+      $(".manage-incidents-officers-add-btn").css("pointer-events", "auto");
+      $(".manage-incidents-civilians-add-btn").css("pointer-events", "auto");
+      $(".manage-incidents-evidence-add-btn").css("pointer-events", "auto");
+      $(".associated-incidents-tags-add-btn").css("pointer-events", "auto");
     }
   );
   $(".tags-add-btn").click(function () {
@@ -892,7 +903,7 @@ $(document).ready(() => {
         setTimeout(() => {
           var e = jQuery.Event("keydown");
           e.which = 13; // # Some key code value
-          e.keyCode = 13
+          e.keyCode = 13;
           $("#dmv-search-input").trigger(e);
         }, 250);
       }, 250);
@@ -912,7 +923,7 @@ $(document).ready(() => {
   });
 
   $(".contextmenu").on("click", ".make-waypoint", function () {
-    let coord = $(this).data("info").split("===")
+    let coord = $(this).data("info").split("===");
     setTimeout(() => {
       $.post(
         `https://${GetParentResourceName()}/SetHouseLocation`,
@@ -955,36 +966,32 @@ $(document).ready(() => {
       .filter("[src='" + $(this).data("info") + "']")
       .remove();
   });
-  $(".gallery-inner-container").on(
-    "contextmenu",
-    ".gallery-img",
-    function (e) {
-      let args = [
-        {
-          className: "remove-image",
-          icon: "fas fa-times",
-          text: "Remove Image",
-          info: $(this).attr("src"),
-          status: "",
-        },
-        {
-          className: "expand-image",
-          icon: "fas fa-expand",
-          text: "Expand Image",
-          info: $(this).attr("src"),
-          status: $(this).css("filter"),
-        },
-        {
-          className: "copy-image-link",
-          icon: "fa-regular fa-copy",
-          text: "Copy Image Link",
-          info: $(this).attr("src"),
-          status: $(this).css("filter"),
-        },
-      ];
-      openContextMenu(e, args);
-    }
-  );
+  $(".gallery-inner-container").on("contextmenu", ".gallery-img", function (e) {
+    let args = [
+      {
+        className: "remove-image",
+        icon: "fas fa-times",
+        text: "Remove Image",
+        info: $(this).attr("src"),
+        status: "",
+      },
+      {
+        className: "expand-image",
+        icon: "fas fa-expand",
+        text: "Expand Image",
+        info: $(this).attr("src"),
+        status: $(this).css("filter"),
+      },
+      {
+        className: "copy-image-link",
+        icon: "fa-regular fa-copy",
+        text: "Copy Image Link",
+        info: $(this).attr("src"),
+        status: $(this).css("filter"),
+      },
+    ];
+    openContextMenu(e, args);
+  });
 
   $(".licenses-holder").on("contextmenu", ".license-tag", function (e) {
     const status = $(this).data("type");
@@ -1032,14 +1039,14 @@ $(document).ready(() => {
   });
 
   $(".contextmenu").on("click", ".revoke-licence", function () {
-    // $.post(
-    //   `https://${GetParentResourceName()}/updateLicence`,
-    //   JSON.stringify({
-    //     cid: $(".manage-profile-citizenid-input").val(),
-    //     type: $(this).data("status"),
-    //     status: "revoke",
-    //   })
-    // );
+    $.post(
+      `https://${GetParentResourceName()}/updateLicence`,
+      JSON.stringify({
+        cid: $(".manage-profile-citizenid-input").val(),
+        type: $(this).data("status"),
+        status: "revoke",
+      })
+    );
 
     const Elem = $(this).data("status");
     $(".license-tag")
@@ -1051,14 +1058,14 @@ $(document).ready(() => {
   });
 
   $(".contextmenu").on("click", ".give-licence", function () {
-    // $.post(
-    //   `https://${GetParentResourceName()}/updateLicence`,
-    //   JSON.stringify({
-    //     cid: $(".manage-profile-citizenid-input").val(),
-    //     type: $(this).data("status"),
-    //     status: "give",
-    //   })
-    // );
+    $.post(
+      `https://${GetParentResourceName()}/updateLicence`,
+      JSON.stringify({
+        cid: $(".manage-profile-citizenid-input").val(),
+        type: $(this).data("status"),
+        status: "give",
+      })
+    );
 
     const Elem = $(this).data("status");
     $(".license-tag")
@@ -1089,9 +1096,7 @@ $(document).ready(() => {
       if (name != "") {
         canSearchForProfiles = false;
         $(".profile-items").empty();
-        $(".profile-items").prepend(
-          `<div class="profile-loader"></div>`
-        );
+        $(".profile-items").prepend(`<div class="profile-loader"></div>`);
 
         let result = await $.post(
           `https://${GetParentResourceName()}/searchProfiles`,
@@ -1131,24 +1136,22 @@ $(document).ready(() => {
           })
         );
         $(".incidents-items").empty();
-        $(".incidents-items").prepend(
-          `<div class="profile-loader"></div>`
-        );
+        $(".incidents-items").prepend(`<div class="profile-loader"></div>`);
       }
     }
   });
 
   function sanitizeInput(input) {
     const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#x27;',
-      '/': '&#x2F;',
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#x27;",
+      "/": "&#x2F;",
     };
-    const reg = /[&<>"'/]/ig;
-    return input.replace(reg, (match) => (map[match]));
+    const reg = /[&<>"'/]/gi;
+    return input.replace(reg, (match) => map[match]);
   }
 
   $("#dispatchmsg").keydown(function (e) {
@@ -1156,7 +1159,7 @@ $(document).ready(() => {
     if (keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
       const time = new Date();
-     
+
       const message = sanitizeInput($(this).val());
       $.post(
         `https://${GetParentResourceName()}/dispatchMessage`,
@@ -1178,7 +1181,10 @@ $(document).ready(() => {
       })
     );
   });
-  $(".manage-incidents-civilians-holder").on("click", ".tag", async function () {
+  $(".manage-incidents-civilians-holder").on(
+    "click",
+    ".tag",
+    async function () {
       const name = $(this).text();
       fidgetSpinner(".profile-page-container");
       currentTab = ".profile-page-container";
@@ -1269,13 +1275,16 @@ $(document).ready(() => {
     // }
     $(".close-all").css("filter", "none");
     let id = $(".manage-incidents-editing-title").data("id");
-    OpenEvidenceLocker(id)
+    OpenEvidenceLocker(id);
   });
 
   function OpenEvidenceLocker(id) {
-    $.post(`https://${GetParentResourceName()}/OpenEvidenceLocker`, JSON.stringify({
-      id,
-    }));
+    $.post(
+      `https://${GetParentResourceName()}/OpenEvidenceLocker`,
+      JSON.stringify({
+        id,
+      })
+    );
   }
 
   $(".incidents-person-search-name-input").on("keydown", "", function (e) {
@@ -1373,13 +1382,10 @@ $(document).ready(() => {
     }
   );
 
-  $(".manage-bolos-title-holder").on(
-    "click",
-    ".manage-bolos-new",
-    function () {
-      var template = "";
-      if ($(".badge-logo").attr("src") == "img/ems_badge.webp") {
-        template = `
+  $(".manage-bolos-title-holder").on("click", ".manage-bolos-new", function () {
+    var template = "";
+    if ($(".badge-logo").attr("src") == "img/ems_badge.webp") {
+      template = `
         <div style="color: white;">
             <p><strong>📝 ICU Room #: [ # ]</strong></p>
             <p><strong>Report ID: [ Report ID ]</strong></p>
@@ -1399,62 +1405,67 @@ $(document).ready(() => {
             <p>-----</p>
         </div>
     `;
-      }
-      $(".manage-bolos-editing-title").html(
-        "You are currently creating a new BOLO"
-      );
-      $(".manage-bolos-input-title").val("");
-      $(".manage-bolos-input-plate").val("");
-      $(".manage-bolos-input-owner").val("");
-      $(".manage-bolos-input-individual").val("");
-      $(".manage-bolos-reports-content").trumbowyg({
-        changeActiveDropdownIcon: true,
-        imageWidthModalEdit: true,
-        btns: [
-          ['foreColor', 'backColor','fontfamily','fontsize','indent', 'outdent'],
-          ['strong', 'em',], ['insertImage'],
-          ['viewHTML'],
-          ['undo', 'redo'],
-          ['formatting'],
-          ['superscript', 'subscript'],
-          ['link'],
-          ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-          ['horizontalRule']
-        ],
-      });
-      $(".manage-bolos-reports-content").trumbowyg('html', template);
-      $(".manage-bolos-tags-holder").empty();
-      $(".bolo-gallery-inner-container").empty();
-      $(".manage-officers-tags-holder").empty();
-
-      if ($(".manage-bolos-tags-add-btn").hasClass("fa-minus")) {
-        $(".manage-bolos-tags-add-btn")
-          .removeClass("fa-minus")
-          .addClass("fa-plus");
-      }
-      if ($(".bolo-gallery-add-btn").hasClass("fa-minus")) {
-        $(".bolo-gallery-add-btn")
-          .removeClass("fa-minus")
-          .addClass("fa-plus");
-      }
-
-      if ($(".bolo-gallery-upload-input").css("display") == "block") {
-        $(".bolo-gallery-upload-input").slideUp(250);
-        setTimeout(() => {
-          $(".bolo-gallery-upload-input").css("display", "none");
-        }, 250);
-      }
-
-      canInputTag = true;
-      canInputBoloTag = true;
-      canInputBoloOfficerTag = true;
-
-      $(".tag-bolo-input").remove();
-      canInputBoloTag = true;
-
-      //}
     }
-  );
+    $(".manage-bolos-editing-title").html(
+      "You are currently creating a new BOLO"
+    );
+    $(".manage-bolos-input-title").val("");
+    $(".manage-bolos-input-plate").val("");
+    $(".manage-bolos-input-owner").val("");
+    $(".manage-bolos-input-individual").val("");
+    $(".manage-bolos-reports-content").trumbowyg({
+      changeActiveDropdownIcon: true,
+      imageWidthModalEdit: true,
+      btns: [
+        [
+          "foreColor",
+          "backColor",
+          "fontfamily",
+          "fontsize",
+          "indent",
+          "outdent",
+        ],
+        ["strong", "em"],
+        ["insertImage"],
+        ["viewHTML"],
+        ["undo", "redo"],
+        ["formatting"],
+        ["superscript", "subscript"],
+        ["link"],
+        ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
+        ["horizontalRule"],
+      ],
+    });
+    $(".manage-bolos-reports-content").trumbowyg("html", template);
+    $(".manage-bolos-tags-holder").empty();
+    $(".bolo-gallery-inner-container").empty();
+    $(".manage-officers-tags-holder").empty();
+
+    if ($(".manage-bolos-tags-add-btn").hasClass("fa-minus")) {
+      $(".manage-bolos-tags-add-btn")
+        .removeClass("fa-minus")
+        .addClass("fa-plus");
+    }
+    if ($(".bolo-gallery-add-btn").hasClass("fa-minus")) {
+      $(".bolo-gallery-add-btn").removeClass("fa-minus").addClass("fa-plus");
+    }
+
+    if ($(".bolo-gallery-upload-input").css("display") == "block") {
+      $(".bolo-gallery-upload-input").slideUp(250);
+      setTimeout(() => {
+        $(".bolo-gallery-upload-input").css("display", "none");
+      }, 250);
+    }
+
+    canInputTag = true;
+    canInputBoloTag = true;
+    canInputBoloOfficerTag = true;
+
+    $(".tag-bolo-input").remove();
+    canInputBoloTag = true;
+
+    //}
+  });
 
   $(".manage-bolos-title-holder").on(
     "click",
@@ -1482,20 +1493,20 @@ $(document).ready(() => {
       });
 
       $(".bolo-gallery-inner-container")
-      .find("img")
-      .each(function () {
-        if ($(this).attr("src") != "") {
-          gallery.push($(this).attr("src"));
-        }
-      });
+        .find("img")
+        .each(function () {
+          if ($(this).attr("src") != "") {
+            gallery.push($(this).attr("src"));
+          }
+        });
 
       $(".manage-officers-tags-holder")
-      .find("div")
-      .each(function () {
-        if ($(this).text() != "") {
-          officers.push($(this).text());
-        }
-      });
+        .find("div")
+        .each(function () {
+          if ($(this).text() != "") {
+            officers.push($(this).text());
+          }
+        });
 
       let time = new Date();
 
@@ -1591,7 +1602,10 @@ $(document).ready(() => {
         $(".bolos-search-refresh").empty();
         $(".bolos-search-refresh").html("Refresh");
         canRefreshBolo = true;
-        $.post(`https://${GetParentResourceName()}/getAllBolos`, JSON.stringify({}));
+        $.post(
+          `https://${GetParentResourceName()}/getAllBolos`,
+          JSON.stringify({})
+        );
       }, 1500);
     }
   });
@@ -1610,25 +1624,21 @@ $(document).ready(() => {
     }
   });
 
-  $(".manage-bolos-tags-holder").on(
-    "keydown",
-    ".tag-bolo-input",
-    function (e) {
-      if (e.keyCode === 13) {
-        $(".manage-bolos-tags-holder").prepend(
-          `<div class="tag">${$(".tag-bolo-input").text()}</div>`
-        );
-        // Have it save instantly if it's an existing report.
-        if ($(".manage-bolos-tags-add-btn").hasClass("fa-minus")) {
-          $(".manage-bolos-tags-add-btn")
-            .removeClass("fa-minus")
-            .addClass("fa-plus");
-        }
-        $(".tag-bolo-input").remove();
-        canInputBoloTag = true;
+  $(".manage-bolos-tags-holder").on("keydown", ".tag-bolo-input", function (e) {
+    if (e.keyCode === 13) {
+      $(".manage-bolos-tags-holder").prepend(
+        `<div class="tag">${$(".tag-bolo-input").text()}</div>`
+      );
+      // Have it save instantly if it's an existing report.
+      if ($(".manage-bolos-tags-add-btn").hasClass("fa-minus")) {
+        $(".manage-bolos-tags-add-btn")
+          .removeClass("fa-minus")
+          .addClass("fa-plus");
       }
+      $(".tag-bolo-input").remove();
+      canInputBoloTag = true;
     }
-  );
+  });
 
   $(".bolo-gallery-add-btn").click(function () {
     //if ($(".manage-profile-citizenid-input").val()) {
@@ -1662,9 +1672,7 @@ $(document).ready(() => {
         setTimeout(() => {
           $(".bolo-gallery-upload-input").css("display", "none");
         }, 250);
-        $(".bolo-gallery-add-btn")
-          .removeClass("fa-minus")
-          .addClass("fa-plus");
+        $(".bolo-gallery-add-btn").removeClass("fa-minus").addClass("fa-plus");
       }
     }
   });
@@ -1676,9 +1684,7 @@ $(document).ready(() => {
         .addClass("fa-plus");
     }
     if ($(".bolo-gallery-add-btn").hasClass("fa-minus")) {
-      $(".bolo-gallery-add-btn")
-        .removeClass("fa-minus")
-        .addClass("fa-plus");
+      $(".bolo-gallery-add-btn").removeClass("fa-minus").addClass("fa-plus");
     }
 
     if ($(".bolo-gallery-upload-input").css("display") == "block") {
@@ -1780,9 +1786,7 @@ $(document).ready(() => {
             .eq(index)
             .data("id") == stupidasscid
         ) {
-          const randomNum = Math.ceil(
-            Math.random() * 1000
-          ).toString();
+          const randomNum = Math.ceil(Math.random() * 1000).toString();
           $("#current-charges-holder").prepend(
             `<div class="current-charges-tag" data-link="${randomNum}">${$(
               ".associated-incidents-user-holder"
@@ -1796,7 +1800,10 @@ $(document).ready(() => {
     setTimeout(() => {
       $(".close-all").css("filter", "brightness(30%)");
     }, 250);
-    $.post(`https://${GetParentResourceName()}/getPenalCode`, JSON.stringify({}));
+    $.post(
+      `https://${GetParentResourceName()}/getPenalCode`,
+      JSON.stringify({})
+    );
   });
 
   var shiftPressed = false;
@@ -1809,77 +1816,126 @@ $(document).ready(() => {
     }
   });
 
-  $(".offenses-main-container").on("mousedown",".offense-item",function (e) {
-      const cid = $("#current-charges-holder").data("cid");
-      const newItem = $(this).find(".offense-item-offense").html();
-      const Fine = +$(this).data("fine");
-      const Sentence = +$(this).data("sentence");
-      if (e.which == 1) {
-        let randomNum = Math.ceil(Math.random() * 1000).toString();
-        $(`[data-name="${cid}"]`).prepend(`<div class="white-tag" data-link="${randomNum}"data-id="${cid}">${$(this).find(".offense-item-offense").html()}</div>`);
-        $("#current-charges-holder").prepend(`<div class="current-charges-tag" data-link="${randomNum}">${$(this).find(".offense-item-offense").html()}</div>`);
+  $(".offenses-main-container").on("mousedown", ".offense-item", function (e) {
+    const cid = $("#current-charges-holder").data("cid");
+    const newItem = $(this).find(".offense-item-offense").html();
+    const Fine = +$(this).data("fine");
+    const Sentence = +$(this).data("sentence");
+    if (e.which == 1) {
+      let randomNum = Math.ceil(Math.random() * 1000).toString();
+      $(`[data-name="${cid}"]`).prepend(
+        `<div class="white-tag" data-link="${randomNum}"data-id="${cid}">${$(
+          this
+        )
+          .find(".offense-item-offense")
+          .html()}</div>`
+      );
+      $("#current-charges-holder").prepend(
+        `<div class="current-charges-tag" data-link="${randomNum}">${$(this)
+          .find(".offense-item-offense")
+          .html()}</div>`
+      );
 
-        const CurrRfine = $(".fine-recommended-amount").filter(`[data-id="${cid}"]`).val();
-        const NewFine = +CurrRfine + +Fine;
-        $(".fine-recommended-amount").filter(`[data-id="${cid}"]`).val(NewFine);
+      const CurrRfine = $(".fine-recommended-amount")
+        .filter(`[data-id="${cid}"]`)
+        .val();
+      const NewFine = +CurrRfine + +Fine;
+      $(".fine-recommended-amount").filter(`[data-id="${cid}"]`).val(NewFine);
 
-        const CurrRsentence = $(".sentence-recommended-amount").filter(`[data-id="${cid}"]`).val();
-        const NewSentence = +CurrRsentence + +Sentence;
-        $(".sentence-recommended-amount").filter(`[data-id="${cid}"]`).val(NewSentence);
-
-      } else if (e.which == 3) {
-        $(".associated-incidents-user-holder").children("div").each(function (index) {
-          if ($(".associated-incidents-user-holder").children().eq(index).data("id") == cid) {
-            if ($(".associated-incidents-user-holder").children().eq(index).html() == newItem) {
-              const linkedId = $(".associated-incidents-user-holder").children().eq(index).data("link");
+      const CurrRsentence = $(".sentence-recommended-amount")
+        .filter(`[data-id="${cid}"]`)
+        .val();
+      const NewSentence = +CurrRsentence + +Sentence;
+      $(".sentence-recommended-amount")
+        .filter(`[data-id="${cid}"]`)
+        .val(NewSentence);
+    } else if (e.which == 3) {
+      $(".associated-incidents-user-holder")
+        .children("div")
+        .each(function (index) {
+          if (
+            $(".associated-incidents-user-holder")
+              .children()
+              .eq(index)
+              .data("id") == cid
+          ) {
+            if (
+              $(".associated-incidents-user-holder")
+                .children()
+                .eq(index)
+                .html() == newItem
+            ) {
+              const linkedId = $(".associated-incidents-user-holder")
+                .children()
+                .eq(index)
+                .data("link");
               //$(".current-charges-tag").filter(`[data-link="${linkedId}"]`).remove()
               $(".white-tag").filter(`[data-link="${linkedId}"]`).remove();
 
               var stop = false;
 
-              $("#current-charges-holder").children("div").each(function (index) {
-                if (stop == false) {
-                  if ($("#current-charges-holder").children().eq(index).html() == newItem) {
-                    const linkedId = $("#current-charges-holder").children().eq(index).data("link");
-                    $(".current-charges-tag").filter(`[data-link="${linkedId}"]`).remove();
-                    stop = true;
+              $("#current-charges-holder")
+                .children("div")
+                .each(function (index) {
+                  if (stop == false) {
+                    if (
+                      $("#current-charges-holder")
+                        .children()
+                        .eq(index)
+                        .html() == newItem
+                    ) {
+                      const linkedId = $("#current-charges-holder")
+                        .children()
+                        .eq(index)
+                        .data("link");
+                      $(".current-charges-tag")
+                        .filter(`[data-link="${linkedId}"]`)
+                        .remove();
+                      stop = true;
+                    }
                   }
-                }
-              });
+                });
 
-              const CurrRfine = $(".fine-recommended-amount").filter(`[data-id="${cid}"]`).val();
+              const CurrRfine = $(".fine-recommended-amount")
+                .filter(`[data-id="${cid}"]`)
+                .val();
               const NewFine = +CurrRfine - Fine;
-              $(".fine-recommended-amount").filter(`[data-id="${cid}"]`).val(NewFine);
+              $(".fine-recommended-amount")
+                .filter(`[data-id="${cid}"]`)
+                .val(NewFine);
 
-              const CurrRsentence = $(".sentence-recommended-amount").filter(`[data-id="${cid}"]`).val();
+              const CurrRsentence = $(".sentence-recommended-amount")
+                .filter(`[data-id="${cid}"]`)
+                .val();
               const NewSentence = +CurrRsentence - +Sentence;
-              $(".sentence-recommended-amount").filter(`[data-id="${cid}"]`).val(NewSentence);
+              $(".sentence-recommended-amount")
+                .filter(`[data-id="${cid}"]`)
+                .val(NewSentence);
               return false;
             }
           }
         });
-      }
     }
-  );
+  });
 
   var timeout;
-  $(".offenses-main-container").on("mouseenter",".offense-item",function (e) {
-    var descr = $(this).data("descr")
-    timeout = setTimeout(function() {
+  $(".offenses-main-container").on("mouseenter", ".offense-item", function (e) {
+    var descr = $(this).data("descr");
+    timeout = setTimeout(function () {
       let args = [
-          {
-            className: "incidents-remove-tag",
-            text: "Remove Tag",
-            info: descr,
-            status: "",
-          },
-        ];
+        {
+          className: "incidents-remove-tag",
+          text: "Remove Tag",
+          info: descr,
+          status: "",
+        },
+      ];
       openChargesContextMenu(e, args);
     }, 500);
   });
 
-  $(".offenses-main-container").on("mouseleave",".offense-item",function (e) {
-    clearTimeout(timeout)
+  $(".offenses-main-container").on("mouseleave", ".offense-item", function (e) {
+    clearTimeout(timeout);
     hideChargesMenu();
   });
 
@@ -1982,43 +2038,51 @@ $(document).ready(() => {
     }
   );
 
-  $('.incidents-ghost-holder').on('click', '#jail-button', function() {
+  $(".incidents-ghost-holder").on("click", "#jail-button", function () {
     // Get the current sentence and recommended sentence values
     const citizenId = $(this).data("id");
-    const sentence = $(".sentence-amount").filter(`[data-id=${citizenId}]`).val();
-    const recommendSentence = $(".sentence-recommended-amount").filter(`[data-id=${citizenId}]`).val();
+    const sentence = $(".sentence-amount")
+      .filter(`[data-id=${citizenId}]`)
+      .val();
+    const recommendSentence = $(".sentence-recommended-amount")
+      .filter(`[data-id=${citizenId}]`)
+      .val();
     sendToJail(citizenId, sentence, recommendSentence);
   });
 
-  $('.incidents-ghost-holder').on('click', '#fine-button', function() {
+  $(".incidents-ghost-holder").on("click", "#fine-button", function () {
     // Get the current fine and recommended fine values
     const citizenId = $(this).data("id");
     const fine = $(".fine-amount").filter(`[data-id=${citizenId}]`).val();
-    const recommendFine = $(".fine-recommended-amount").filter(`[data-id=${citizenId}]`).val();
+    const recommendFine = $(".fine-recommended-amount")
+      .filter(`[data-id=${citizenId}]`)
+      .val();
     const incidentId = $(".manage-incidents-editing-title").data("id");
     sendFine(citizenId, fine, recommendFine, incidentId);
   });
 
-  $('.incidents-ghost-holder').on('click', '#community-service-button', function() {
-    // Get the current sentence and recommended sentence values
-    const citizenId = $(this).data("id");
-    const sentence = $(".sentence-amount").filter(`[data-id=${citizenId}]`).val();
-    const recommendSentence = $(".sentence-recommended-amount").filter(`[data-id=${citizenId}]`).val();
-    sendToCommunityService(citizenId, sentence, recommendSentence);
-  });
+  $(".incidents-ghost-holder").on(
+    "click",
+    "#community-service-button",
+    function () {
+      // Get the current sentence and recommended sentence values
+      const citizenId = $(this).data("id");
+      const sentence = $(".sentence-amount")
+        .filter(`[data-id=${citizenId}]`)
+        .val();
+      const recommendSentence = $(".sentence-recommended-amount")
+        .filter(`[data-id=${citizenId}]`)
+        .val();
+      sendToCommunityService(citizenId, sentence, recommendSentence);
+    }
+  );
 
   $(".contextmenu").on(
     "click",
     ".associated-incidents-remove-tag",
     function () {
-      $(
-        `.associated-incidents-tag:contains(${$(this).data("info")})`
-      ).remove();
-      $(
-        `.associated-incidents-user-title:contains(${$(this).data(
-          "info"
-        )})`
-      )
+      $(`.associated-incidents-tag:contains(${$(this).data("info")})`).remove();
+      $(`.associated-incidents-user-title:contains(${$(this).data("info")})`)
         .parent()
         .remove();
       const incidentId = $(".manage-incidents-editing-title").data("id");
@@ -2069,7 +2133,9 @@ $(document).ready(() => {
         );
       } else if (sourceElement === "incidents-officers") {
         $(".manage-incidents-officers-holder").append(
-          `<div class="tag">(${$(this).data("callsign")}) ${$(this).data("name")}</div>`
+          `<div class="tag">(${$(this).data("callsign")}) ${$(this).data(
+            "name"
+          )}</div>`
         );
       } else if (sourceElement === "reports-civilians") {
         $(".reports-civilians-tags-holder").append(
@@ -2077,42 +2143,112 @@ $(document).ready(() => {
         );
       } else if (sourceElement === "reports-officers") {
         $(".reports-officers-tags-holder").append(
-          `<div class="tag">(${$(this).data("callsign")}) ${$(this).data("name")}</div>`
+          `<div class="tag">(${$(this).data("callsign")}) ${$(this).data(
+            "name"
+          )}</div>`
         );
       } else if (sourceElement === "bolos-officers") {
         $(".manage-officers-tags-holder").append(
-          `<div class="tag">(${$(this).data("callsign")}) ${$(this).data("name")}</div>`
+          `<div class="tag">(${$(this).data("callsign")}) ${$(this).data(
+            "name"
+          )}</div>`
         );
-      } else if(sourceElement === "associated-incidents-tags") {
+      } else if (sourceElement === "associated-incidents-tags") {
         $(".associated-incidents-tags-holder").prepend(
-          `<div class="associated-incidents-tag" data-id="${$(this).data("id")}">${$(this).data("name")}</div>`
+          `<div class="associated-incidents-tag" data-id="${$(this).data(
+            "id"
+          )}">${$(this).data("name")}</div>`
         );
 
         // This section handles populating the fields when you add a new associated user to the incident
         $(".incidents-ghost-holder").prepend(
           `
-            <div class="associated-incidents-user-container" data-id="${$(this).data("cid")}">
-                <div class="associated-incidents-user-title">${$(this).data("info")}</div>
+            <div class="associated-incidents-user-container" data-id="${$(
+              this
+            ).data("cid")}">
+                <div class="associated-incidents-user-title">${$(this).data(
+                  "info"
+                )}</div>
                 <div class="associated-incidents-user-tags-holder">
-                    <div class="associated-incidents-user-tag red-tag" data-id="${$(this).data("cid")}">Warrant</div>
-                    <div class="associated-incidents-user-tag red-tag" data-id="${$(this).data("cid")}">Guilty</div>
-                    <div class="associated-incidents-user-tag red-tag" data-id="${$(this).data("cid")}">Processed</div>
-                    <div class="associated-incidents-user-tag red-tag" data-id="${$(this).data("cid")}">Associated</div>
+                    <div class="associated-incidents-user-tag red-tag" data-id="${$(
+                      this
+                    ).data("cid")}">Warrant</div>
+                    <div class="associated-incidents-user-tag red-tag" data-id="${$(
+                      this
+                    ).data("cid")}">Guilty</div>
+                    <div class="associated-incidents-user-tag red-tag" data-id="${$(
+                      this
+                    ).data("cid")}">Processed</div>
+                    <div class="associated-incidents-user-tag red-tag" data-id="${$(
+                      this
+                    ).data("cid")}">Associated</div>
                 </div>
                 <div class="modify-charges-label"><span class="fas fa-solid fa-info"></span> Right click below to add and/or modify charges.</div>
-                <div class="associated-incidents-user-holder" data-name="${$(this).data("cid")}"></div>
-                <div class="manage-incidents-title-tag" data-id="${$(this).data("cid")}">Recommended Fine</div>
-                <div class="associated-incidents-fine-input" data-id="${$(this).data("cid")}"><img src="img/h7S5f9J.webp"> <input disabled placeholder="0" class="fine-recommended-amount" id="fine-recommended-amount" data-id="${$(this).data("cid")}" type="number"></div>
-                <div class="manage-incidents-title-tag" data-id="${$(this).data("cid")}">Recommended Sentence</div>
-                <div class="associated-incidents-sentence-input" data-id="${$(this).data("cid")}"><img src="img/9Xn6xXK.webp"> <input disabled placeholder="0" class="sentence-recommended-amount" id="sentence-recommended-amount" data-id="${$(this).data("cid")}" type="number"></div>
-                <div class="manage-incidents-title-tag" data-id="${$(this).data("cid")}">Fine</div>
-                <div class="associated-incidents-fine-input" data-id="${$(this).data("cid")}"><img src="img/h7S5f9J.webp"> <input placeholder="Enter fine here..." value="0" class="fine-amount" data-id="${$(this).data("cid")}" type="number"></div>
-                <div class="manage-incidents-title-tag" data-id="${$(this).data("cid")}">Sentence</div>
-                <div class="associated-incidents-sentence-input" data-id="${$(this).data("cid")}"><img src="img/9Xn6xXK.webp"> <input placeholder="Enter months here..." value="0" class="sentence-amount" data-id="${$(this).data("cid")}" type="number"></div>
-                <div class="associated-incidents-controls" data-id="${$(this).data("cid")}">
-                    <div id="jail-button" class="control-button" data-id="${$(this).data("cid")}"><span class="fa-solid fa-building-columns" style="margin-top: 3.5px;"></span> Jail</div>
-                    <div id="fine-button" class="control-button" data-id="${$(this).data("cid")}"><span class="fa-solid fa-file-invoice-dollar" style="margin-top: 3.5px;"></span> Fine</div>
-                    ${canSendToCommunityService ? `<div id="community-service-button" class="control-button" data-id="${$(this).data("cid")}"> <span class="fa-solid fa-person-digging" style="margin-top: 3.5px;"></span>Community Service</div>` : ''}
+                <div class="associated-incidents-user-holder" data-name="${$(
+                  this
+                ).data("cid")}"></div>
+                <div class="manage-incidents-title-tag" data-id="${$(this).data(
+                  "cid"
+                )}">Recommended Fine</div>
+                <div class="associated-incidents-fine-input" data-id="${$(
+                  this
+                ).data(
+                  "cid"
+                )}"><img src="img/h7S5f9J.webp"> <input disabled placeholder="0" class="fine-recommended-amount" id="fine-recommended-amount" data-id="${$(
+            this
+          ).data("cid")}" type="number"></div>
+                <div class="manage-incidents-title-tag" data-id="${$(this).data(
+                  "cid"
+                )}">Recommended Sentence</div>
+                <div class="associated-incidents-sentence-input" data-id="${$(
+                  this
+                ).data(
+                  "cid"
+                )}"><img src="img/9Xn6xXK.webp"> <input disabled placeholder="0" class="sentence-recommended-amount" id="sentence-recommended-amount" data-id="${$(
+            this
+          ).data("cid")}" type="number"></div>
+                <div class="manage-incidents-title-tag" data-id="${$(this).data(
+                  "cid"
+                )}">Fine</div>
+                <div class="associated-incidents-fine-input" data-id="${$(
+                  this
+                ).data(
+                  "cid"
+                )}"><img src="img/h7S5f9J.webp"> <input placeholder="Enter fine here..." value="0" class="fine-amount" data-id="${$(
+            this
+          ).data("cid")}" type="number"></div>
+                <div class="manage-incidents-title-tag" data-id="${$(this).data(
+                  "cid"
+                )}">Sentence</div>
+                <div class="associated-incidents-sentence-input" data-id="${$(
+                  this
+                ).data(
+                  "cid"
+                )}"><img src="img/9Xn6xXK.webp"> <input placeholder="Enter months here..." value="0" class="sentence-amount" data-id="${$(
+            this
+          ).data("cid")}" type="number"></div>
+                <div class="associated-incidents-controls" data-id="${$(
+                  this
+                ).data("cid")}">
+                    <div id="jail-button" class="control-button" data-id="${$(
+                      this
+                    ).data(
+                      "cid"
+                    )}"><span class="fa-solid fa-building-columns" style="margin-top: 3.5px;"></span> Jail</div>
+                    <div id="fine-button" class="control-button" data-id="${$(
+                      this
+                    ).data(
+                      "cid"
+                    )}"><span class="fa-solid fa-file-invoice-dollar" style="margin-top: 3.5px;"></span> Fine</div>
+                    ${
+                      canSendToCommunityService
+                        ? `<div id="community-service-button" class="control-button" data-id="${$(
+                            this
+                          ).data(
+                            "cid"
+                          )}"> <span class="fa-solid fa-person-digging" style="margin-top: 3.5px;"></span>Community Service</div>`
+                        : ""
+                    }
                 </div>
             </div>
           `
@@ -2122,7 +2258,7 @@ $(document).ready(() => {
       // Clear the search results and source
       $(".incidents-person-search-holder").removeData("source"); // Without using this line, we end up reading stale data from the data-source attribute rather than the data-source from the field we clicked on
       $(".incidents-person-search-holder").empty(); // Clear the search results
-      $('.incidents-person-search-name-input').val(''); // Reset the search input field
+      $(".incidents-person-search-name-input").val(""); // Reset the search input field
     }
   );
 
@@ -2144,18 +2280,19 @@ $(document).ready(() => {
   });
 
   $(".contextmenu").on("click", ".remove-tag", function () {
-    $(
-      `.tag:contains(${$(this).data("info")})`
-    ).remove();
+    $(`.tag:contains(${$(this).data("info")})`).remove();
   });
 
   // Setup the remove tag context menu for each holder section
-  const holdersSelectors = [".manage-incidents-civilians-holder", ".manage-incidents-officers-holder", ".reports-civilians-tags-holder", ".reports-officers-tags-holder", ".manage-officers-tags-holder"];
-  holdersSelectors.forEach(holder => {
-    $(holder).on(
-    "contextmenu",
-    ".tag",
-    function (e) {
+  const holdersSelectors = [
+    ".manage-incidents-civilians-holder",
+    ".manage-incidents-officers-holder",
+    ".reports-civilians-tags-holder",
+    ".reports-officers-tags-holder",
+    ".manage-officers-tags-holder",
+  ];
+  holdersSelectors.forEach((holder) => {
+    $(holder).on("contextmenu", ".tag", function (e) {
       let args = [
         {
           className: "remove-tag",
@@ -2180,7 +2317,10 @@ $(document).ready(() => {
         $(".incidents-search-refresh").empty();
         $(".incidents-search-refresh").html("Refresh");
         canRefreshIncidents = true;
-        $.post(`https://${GetParentResourceName()}/getAllIncidents`, JSON.stringify({}));
+        $.post(
+          `https://${GetParentResourceName()}/getAllIncidents`,
+          JSON.stringify({})
+        );
       }, 1500);
     }
   });
@@ -2262,7 +2402,10 @@ $(document).ready(() => {
         $(".reports-search-refresh").empty();
         $(".reports-search-refresh").html("Refresh");
         canRefreshReports = true;
-        $.post(`https://${GetParentResourceName()}/getAllReports`, JSON.stringify({}));
+        $.post(
+          `https://${GetParentResourceName()}/getAllReports`,
+          JSON.stringify({})
+        );
       }, 1500);
     }
   });
@@ -2276,7 +2419,10 @@ $(document).ready(() => {
       $(".dispatch-comms-refresh").empty();
       $(".dispatch-comms-refresh").html("Refresh");
       canRefreshReports = true;
-      $.post(`https://${GetParentResourceName()}/refreshDispatchMsgs`, JSON.stringify({}));
+      $.post(
+        `https://${GetParentResourceName()}/refreshDispatchMsgs`,
+        JSON.stringify({})
+      );
     }, 1500);
   });
 
@@ -2292,9 +2438,7 @@ $(document).ready(() => {
         .addClass("fa-plus");
     }
     if ($(".reports-gallery-add-btn").hasClass("fa-minus")) {
-      $(".reports-gallery-add-btn")
-        .removeClass("fa-minus")
-        .addClass("fa-plus");
+      $(".reports-gallery-add-btn").removeClass("fa-minus").addClass("fa-plus");
     }
 
     if ($(".reports-gallery-upload-input").css("display") == "block") {
@@ -2478,7 +2622,8 @@ $(document).ready(() => {
         <p><strong>Notes:</strong></p>
         <p><em>[ Additional Notes Here ]</em></p>
     </div>
-`;}
+`;
+      }
       $(".manage-reports-editing-title").html(
         "You are currently creating a new report"
       );
@@ -2488,18 +2633,26 @@ $(document).ready(() => {
         changeActiveDropdownIcon: true,
         imageWidthModalEdit: true,
         btns: [
-          ['foreColor', 'backColor','fontfamily','fontsize','indent', 'outdent'],
-          ['strong', 'em',], ['insertImage'],
-          ['viewHTML'],
-          ['undo', 'redo'],
-          ['formatting'],
-          ['superscript', 'subscript'],
-          ['link'],
-          ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-          ['horizontalRule']
+          [
+            "foreColor",
+            "backColor",
+            "fontfamily",
+            "fontsize",
+            "indent",
+            "outdent",
+          ],
+          ["strong", "em"],
+          ["insertImage"],
+          ["viewHTML"],
+          ["undo", "redo"],
+          ["formatting"],
+          ["superscript", "subscript"],
+          ["link"],
+          ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
+          ["horizontalRule"],
         ],
       });
-      $(".manage-reports-reports-content").trumbowyg('html', template);
+      $(".manage-reports-reports-content").trumbowyg("html", template);
       $(".manage-reports-tags-holder").empty();
       $(".reports-gallery-inner-container").empty();
       $(".reports-officers-tags-holder").empty();
@@ -2546,9 +2699,7 @@ $(document).ready(() => {
           })
         );
         $(".reports-items").empty();
-        $(".reports-items").prepend(
-          `<div class="profile-loader"></div>`
-        );
+        $(".reports-items").prepend(`<div class="profile-loader"></div>`);
       }
     }
   });
@@ -2595,12 +2746,12 @@ $(document).ready(() => {
         });
 
       $(".reports-civilians-tags-holder")
-      .find("div")
-      .each(function () {
-        if ($(this).text() != "") {
-          civilians.push($(this).text());
-        }
-      });
+        .find("div")
+        .each(function () {
+          if ($(this).text() != "") {
+            civilians.push($(this).text());
+          }
+        });
 
       let time = new Date();
 
@@ -2679,7 +2830,7 @@ $(document).ready(() => {
           let codefive = "red-tag";
           let stolen = "red-tag";
 
-          if (value.state == 'Impounded') {
+          if (value.state == "Impounded") {
             impound = "green-tag";
           }
 
@@ -2720,7 +2871,6 @@ $(document).ready(() => {
         $(".dmv-items").html(vehicleHTML);
 
         canSearchForVehicles = true;
-
       }
     }
   });
@@ -2766,18 +2916,20 @@ $(document).ready(() => {
           let code5 = false;
           let code5tag = $(".vehicle-tags").find(".code5-tag");
           if (code5tag.hasClass("green-tag")) {
-            code5 = true
+            code5 = true;
           }
 
           let stolen = false;
           let stolentag = $(".vehicle-tags").find(".stolen-tag");
           if (stolentag.hasClass("green-tag")) {
-            stolen = true
+            stolen = true;
           }
 
-          let impoundInfo = {}
-          impoundInfo.impoundActive = $(".vehicle-tags").find(".impound-tag").hasClass("green-tag")
-          impoundInfo.impoundChanged = impoundChanged
+          let impoundInfo = {};
+          impoundInfo.impoundActive = $(".vehicle-tags")
+            .find(".impound-tag")
+            .hasClass("green-tag");
+          impoundInfo.impoundChanged = impoundChanged;
           if (impoundChanged === true) {
             if (impoundInfo.impoundActive === true) {
               impoundInfo.plate = $(".impound-plate").val();
@@ -2919,10 +3071,7 @@ $(document).ready(() => {
     if (!plate || plate === "") {
       $(".impound-form").css("border", "1px solid rgb(184, 3, 3)");
       setTimeout(() => {
-        $(".impound-form").css(
-          "border",
-          "1px solid rgb(168, 168, 168)"
-        );
+        $(".impound-form").css("border", "1px solid rgb(168, 168, 168)");
       }, 500);
       return;
     }
@@ -2930,10 +3079,7 @@ $(document).ready(() => {
     if (!linkedreport || linkedreport === "") {
       $(".impound-form").css("border", "1px solid rgb(184, 3, 3)");
       setTimeout(() => {
-        $(".impound-form").css(
-          "border",
-          "1px solid rgb(168, 168, 168)"
-        );
+        $(".impound-form").css("border", "1px solid rgb(168, 168, 168)");
       }, 500);
       return;
     }
@@ -2941,10 +3087,7 @@ $(document).ready(() => {
     if (!fee || fee === "") {
       $(".impound-form").css("border", "1px solid rgb(184, 3, 3)");
       setTimeout(() => {
-        $(".impound-form").css(
-          "border",
-          "1px solid rgb(168, 168, 168)"
-        );
+        $(".impound-form").css("border", "1px solid rgb(168, 168, 168)");
       }, 500);
       return;
     }
@@ -2952,10 +3095,7 @@ $(document).ready(() => {
     if (!time || time === "") {
       $(".impound-form").css("border", "1px solid rgb(184, 3, 3)");
       setTimeout(() => {
-        $(".impound-form").css(
-          "border",
-          "1px solid rgb(168, 168, 168)"
-        );
+        $(".impound-form").css("border", "1px solid rgb(168, 168, 168)");
       }, 500);
       return;
     }
@@ -2976,7 +3116,10 @@ $(document).ready(() => {
     //$(".impound-time").val("");
     //$(".impound-fee").css("color", "white");
 
-    $(".vehicle-tags").find(".impound-tag").addClass("green-tag").removeClass("red-tag");
+    $(".vehicle-tags")
+      .find(".impound-tag")
+      .addClass("green-tag")
+      .removeClass("red-tag");
 
     $(".impound-form").slideUp(250);
     $(".impound-form").fadeOut(250);
@@ -3059,7 +3202,6 @@ $(document).ready(() => {
       openContextMenu(e, args);
     }
   });
-
 
   $(".calls-search-title").click(function () {
     if (canSearchForProfiles == true) {
@@ -3165,25 +3307,29 @@ $(document).ready(() => {
     }
   });
 
-  $(".weapon-information-title-holder").on("click", ".weapon-information-new", function () {
-    $(".weapon-information-title-holder").data("dbid", 0);
-    $(".weapon-info-serial-input").val("");
-    $(".weapon-info-owner-input").val("");
-    $(".weapon-info-class-input").val("");
-    $(".weapon-info-model-input").val("");
-    $(".weapon-info-imageurl-input").val("img/not-found.webp");
+  $(".weapon-information-title-holder").on(
+    "click",
+    ".weapon-information-new",
+    function () {
+      $(".weapon-information-title-holder").data("dbid", 0);
+      $(".weapon-info-serial-input").val("");
+      $(".weapon-info-owner-input").val("");
+      $(".weapon-info-class-input").val("");
+      $(".weapon-info-model-input").val("");
+      $(".weapon-info-imageurl-input").val("img/not-found.webp");
 
-    canSaveWeapon = true;
-  }
-);
+      canSaveWeapon = true;
+    }
+  );
 
-  $(".weapon-information-title-holder").on("click", ".weapon-information-save", function () {
-    if (canSaveProfile == true) {
-      canSaveProfile = false;
+  $(".weapon-information-title-holder").on(
+    "click",
+    ".weapon-information-save",
+    function () {
+      if (canSaveProfile == true) {
+        canSaveProfile = false;
         $(".manage-profile-save").empty();
-        $(".manage-profile-save").prepend(
-          `<span class="fas fa-check"></span>`
-        );
+        $(".manage-profile-save").prepend(`<span class="fas fa-check"></span>`);
         setTimeout(() => {
           $(".manage-profile-save").empty();
           $(".manage-profile-save").html("Save");
@@ -3219,9 +3365,9 @@ $(document).ready(() => {
 
           $(".weapon-info-image").attr("src", newImageurl);
         }, 250);
+      }
     }
-  }
-);
+  );
 
   $(".weapons-items").on("click", ".weapons-item", function () {
     $.post(
@@ -3269,9 +3415,7 @@ $(document).ready(() => {
           })
         );
         $(".incidents-items").empty();
-        $(".incidents-items").prepend(
-          `<div class="profile-loader"></div>`
-        );
+        $(".incidents-items").prepend(`<div class="profile-loader"></div>`);
         setTimeout(() => {
           $.post(
             `https://${GetParentResourceName()}/getIncidentData`,
@@ -3314,9 +3458,7 @@ $(document).ready(() => {
           })
         );
         $(".incidents-items").empty();
-        $(".incidents-items").prepend(
-          `<div class="profile-loader"></div>`
-        );
+        $(".incidents-items").prepend(`<div class="profile-loader"></div>`);
         setTimeout(() => {
           $.post(
             `https://${GetParentResourceName()}/getIncidentData`,
@@ -3353,9 +3495,7 @@ $(document).ready(() => {
 
   $(".contextmenu").on("click", ".toggle-duty", function () {
     let info = $(this).data("info");
-    let currentStatus = $(`[data-id="${info}"]`)
-      .find(".unit-status")
-      .html();
+    let currentStatus = $(`[data-id="${info}"]`).find(".unit-status").html();
     if (currentStatus == "10-8") {
       $(`[data-id="${info}"]`).find(".unit-status").html("10-7");
       $(`[data-id="${info}"]`)
@@ -3510,73 +3650,68 @@ $(document).ready(() => {
     $("#respondcalls").val("")*/
   });
 
-  $('#vehiclePointsSlider').change(function(){
-    var currentValue = $('#vehiclePointsSliderValue');
+  $("#vehiclePointsSlider").change(function () {
+    var currentValue = $("#vehiclePointsSliderValue");
     currentValue.html(this.value);
   });
 
+  $(".active-calls-list").on("contextmenu", ".active-calls-item", function (e) {
+    const callId = $(this).data("id");
+    const canRespond = $(this).data("canrespond");
 
-  $(".active-calls-list").on(
-    "contextmenu",
-    ".active-calls-item",
-    function (e) {
-      const callId = $(this).data("id");
-      const canRespond = $(this).data("canrespond");
-
-      if (callId) {
-        if (canRespond == true) {
-          args = [
-            {
-              className: "attached-units",
-              icon: "fas fa-link",
-              text: "Attached Units",
-              info: callId,
-              status: "",
-            },
-            {
-              className: "Set-Waypoint",
-              icon: "fas fa-map-marker-alt",
-              text: "Set Waypoint",
-              info: callId,
-              status: "",
-            },
-            {
-              className: "remove-blip",
-              icon: "fa-solid fa-circle-minus",
-              text: "Remove Blip",
-              info: callId,
-              status: "",
-            },
-          ];
-        } else if (canRespond == false) {
-          args = [
-            {
-              className: "attached-units",
-              icon: "fas fa-link",
-              text: "Attached Units",
-              info: callId,
-              status: "",
-            },
-            {
-              className: "Set-Waypoint",
-              icon: "fas fa-map-marker-alt",
-              text: "Set Waypoint",
-              info: callId,
-              status: "",
-            },
-            {
-              className: "remove-blip",
-              icon: "fa-solid fa-circle-minus",
-              text: "Remove Blip",
-              info: callId,
-              status: "",
-            },
-          ];
-        }
-        openContextMenu(e, args);
+    if (callId) {
+      if (canRespond == true) {
+        args = [
+          {
+            className: "attached-units",
+            icon: "fas fa-link",
+            text: "Attached Units",
+            info: callId,
+            status: "",
+          },
+          {
+            className: "Set-Waypoint",
+            icon: "fas fa-map-marker-alt",
+            text: "Set Waypoint",
+            info: callId,
+            status: "",
+          },
+          {
+            className: "remove-blip",
+            icon: "fa-solid fa-circle-minus",
+            text: "Remove Blip",
+            info: callId,
+            status: "",
+          },
+        ];
+      } else if (canRespond == false) {
+        args = [
+          {
+            className: "attached-units",
+            icon: "fas fa-link",
+            text: "Attached Units",
+            info: callId,
+            status: "",
+          },
+          {
+            className: "Set-Waypoint",
+            icon: "fas fa-map-marker-alt",
+            text: "Set Waypoint",
+            info: callId,
+            status: "",
+          },
+          {
+            className: "remove-blip",
+            icon: "fa-solid fa-circle-minus",
+            text: "Remove Blip",
+            info: callId,
+            status: "",
+          },
+        ];
       }
+      openContextMenu(e, args);
     }
-  );
+  });
 
   $(".contextmenu").on("click", ".call-dispatch-detach", function () {
     const cid = $(this).data("info");
@@ -3675,9 +3810,7 @@ $(document).ready(() => {
         .html()
         .replace(/\s*(?:\[[^\]]*\]|\([^)]*\))\s*/g, "");
       let newunitname = `(${callsign}) ${name}`;
-      $(`[data-id="${editingcallsign}"]`)
-        .find(".unit-name")
-        .html(newunitname);
+      $(`[data-id="${editingcallsign}"]`).find(".unit-name").html(newunitname);
       $.post(
         `https://${GetParentResourceName()}/setCallsign`,
         JSON.stringify({
@@ -3711,9 +3844,7 @@ $(document).ready(() => {
     if (radio.length > 0) {
       let editingradio = $(".radio-container").data("id");
       let newunitname = `${radio}`;
-      $(`[data-id="${editingradio}"]`)
-        .find(".unit-radio")
-        .html(newunitname);
+      $(`[data-id="${editingradio}"]`).find(".unit-radio").html(newunitname);
       $.post(
         `https://${GetParentResourceName()}/setRadio`,
         JSON.stringify({
@@ -3741,7 +3872,7 @@ $(document).ready(() => {
       })
     );
     $.post(`https://${GetParentResourceName()}/escape`, JSON.stringify({}));
-  })
+  });
 
   var draggedElement = 0;
   var dragging = false;
@@ -3935,70 +4066,51 @@ $(document).ready(() => {
       image: "img/court.webp",
       name: "DEPARTMENT OF JUSTICE",
     },
-  }
+  };
   function applyCustomTheme(theme) {
     document.documentElement.style.setProperty(
-      "--color-1", /* Panels */
-        theme.color1
-        );
+      "--color-1" /* Panels */,
+      theme.color1
+    );
     document.documentElement.style.setProperty(
-      "--color-2", /* Clock */
-        theme.color2
-        );
+      "--color-2" /* Clock */,
+      theme.color2
+    );
     document.documentElement.style.setProperty(
-      "--color-3", /* Outlines and hover */
-        theme.color3
-        );
+      "--color-3" /* Outlines and hover */,
+      theme.color3
+    );
     document.documentElement.style.setProperty(
-      "--color-4", /* Button Base */
-        theme.color4
-        );
-    document.documentElement.style.setProperty(
-        "--color-5",
-        theme.color5
-        );
-    document.documentElement.style.setProperty(
-        "--color-6",
-        theme.color6
-        );
-    document.documentElement.style.setProperty(
-        "--color-7",
-        theme.color7
-        );
-    document.documentElement.style.setProperty(
-        "--color-8",
-        theme.color8
-        );
-    document.documentElement.style.setProperty(
-        "--color-9",
-        theme.color9
-        );
-    document.documentElement.style.setProperty(
-        "--color-10",
-        theme.color10
-        );
-      $(".badge-logo").attr("src", theme.image );
-      $(".header-title").html(theme.name);
+      "--color-4" /* Button Base */,
+      theme.color4
+    );
+    document.documentElement.style.setProperty("--color-5", theme.color5);
+    document.documentElement.style.setProperty("--color-6", theme.color6);
+    document.documentElement.style.setProperty("--color-7", theme.color7);
+    document.documentElement.style.setProperty("--color-8", theme.color8);
+    document.documentElement.style.setProperty("--color-9", theme.color9);
+    document.documentElement.style.setProperty("--color-10", theme.color10);
+    $(".badge-logo").attr("src", theme.image);
+    $(".header-title").html(theme.name);
   }
   function JobColors(sentJob) {
     if (sentJob) {
-      if (PoliceJobs[sentJob] !== undefined)  {
+      if (PoliceJobs[sentJob] !== undefined) {
         if (sentJob == "police") {
-            applyCustomTheme(customThemes.lspd)
-          } else if (sentJob == "bcso"){
-            applyCustomTheme(customThemes.bcso)
-          } else if (sentJob == "sasp") {
-            applyCustomTheme(customThemes.sasp)
-          } else if (sentJob == "sast") {
-            applyCustomTheme(customThemes.sast)
-
-          } else if (sentJob == "sapr") {
-            applyCustomTheme(customThemes.sapr)
-          } else if (sentJob == "lssd") {
-            applyCustomTheme(customThemes.lssd)
-          } else if (sentJob == "doc") {
-            applyCustomTheme(customThemes.doc)
-          }
+          applyCustomTheme(customThemes.lspd);
+        } else if (sentJob == "bcso") {
+          applyCustomTheme(customThemes.bcso);
+        } else if (sentJob == "sasp") {
+          applyCustomTheme(customThemes.sasp);
+        } else if (sentJob == "sast") {
+          applyCustomTheme(customThemes.sast);
+        } else if (sentJob == "sapr") {
+          applyCustomTheme(customThemes.sapr);
+        } else if (sentJob == "lssd") {
+          applyCustomTheme(customThemes.lssd);
+        } else if (sentJob == "doc") {
+          applyCustomTheme(customThemes.doc);
+        }
         $(".bolo-nav-item").html("BOLOs");
         $(".bolos-search-title").html("Bolos");
         $("#bolos-search-input").attr("placeholder", "Search Bolo...");
@@ -4010,37 +4122,24 @@ $(document).ready(() => {
         $(".boloowner-title").html("Owner");
         $(".boloindividual-title").html("Individual");
         $("#boloplate").attr("placeholder", "Place plate here...");
-        $("#bolodetail").attr(
-          "placeholder",
-          "Bolo detail goes here..."
-        );
-        $("#boloowner").attr(
-          "placeholder",
-          "Place vehicle owner here..."
-        );
-        $("#boloindividual").attr(
-          "placeholder",
-          "Place invidivual here..."
-        );
+        $("#bolodetail").attr("placeholder", "Bolo detail goes here...");
+        $("#boloowner").attr("placeholder", "Place vehicle owner here...");
+        $("#boloindividual").attr("placeholder", "Place invidivual here...");
         $("#home-warrants-container").fadeIn(0);
         $("#home-reports-container").fadeOut(0);
         //$(".quote-span").html("TUCKER MALD, BEST MALD");
         $(".incidents-nav-item").show();
         $(".bolo-nav-item").show();
         $(".dmv-nav-item").show();
-        $(".weapons-nav-item").show()
+        $(".weapons-nav-item").show();
         $(".cams-nav-item").show();
         $(".map-nav-item").show();
         $(".dispatch-title-ofsomesort").html("Dispatch");
         $(".dispatch-comms-container").fadeIn(0);
         $(".manage-profile-name-input-1").attr("readonly", true);
         $(".manage-profile-name-input-2").attr("readonly", true);
-        $("#reports-officers-involved-tag-title").html(
-          "Officers Involved"
-        );
-        $("#bolos-officers-involved-tag-title").html(
-          "Officers Involved"
-        );
+        $("#reports-officers-involved-tag-title").html("Officers Involved");
+        $("#bolos-officers-involved-tag-title").html("Officers Involved");
         $(".roster-iframe").attr("src", rosterLink);
         $(".sop-iframe").attr("src", sopLink);
 
@@ -4053,23 +4152,24 @@ $(document).ready(() => {
         $(".manage-reports-save").css("display", "block");
         $(".manage-reports-editing-title").css("display", "block");
         $(".vehicle-information-save").css("display", "block");
-        $(".vehicle-information-title").css("margin-right", "0px").css("width", "81%");
-        $(".manage-incidents-title ").css("margin-right", "0px")
-        $(".manage-reports-title").css("margin-right", "0px").css("width", "66%");
+        $(".vehicle-information-title")
+          .css("margin-right", "0px")
+          .css("width", "81%");
+        $(".manage-incidents-title ").css("margin-right", "0px");
+        $(".manage-reports-title")
+          .css("margin-right", "0px")
+          .css("width", "66%");
       } else if (AmbulanceJobs[sentJob] !== undefined) {
-        $(".weapons-nav-item").hide()
+        $(".weapons-nav-item").hide();
         $("#home-warrants-container").fadeOut(0);
         $("#home-reports-container").fadeIn(0);
         if (sentJob == "ambulance") {
-          applyCustomTheme(customThemes.ambulance)
+          applyCustomTheme(customThemes.ambulance);
         }
         //$(".quote-span").html("The simplest explanation is almost always somebody screwed up.");
         $(".bolo-nav-item").html("ICU");
         $(".bolos-search-title").html("ICU Check-ins");
-        $("#bolos-search-input").attr(
-          "placeholder",
-          "Search Check-ins..."
-        );
+        $("#bolos-search-input").attr("placeholder", "Search Check-ins...");
         $(".manage-bolos-title").html("Manage ICU Check-in");
         $(".manage-bolos-editing-title").html(
           "You are creating a new ICU Check-in"
@@ -4077,18 +4177,12 @@ $(document).ready(() => {
         $(".boloplate-title").html("Estimated Recovery");
         $(".boloowner-title").html("Emergency Contact");
         $(".boloindividual-title").html("Patient");
-        $("#boloplate").attr(
-          "placeholder",
-          "Enter recovery time here..."
-        );
+        $("#boloplate").attr("placeholder", "Enter recovery time here...");
         $("#bolodetail").attr(
           "placeholder",
           "Enter ICU Check-in details here..."
         );
-        $("#boloowner").attr(
-          "placeholder",
-          "Enter emergency contact here..."
-        );
+        $("#boloowner").attr("placeholder", "Enter emergency contact here...");
         $("#boloindividual").attr(
           "placeholder",
           "Enter patient name and CID here..."
@@ -4096,12 +4190,8 @@ $(document).ready(() => {
         $(".incidents-nav-item").hide();
         $(".dmv-nav-item").hide();
         $(".cams-nav-item").hide();
-        $("#reports-officers-involved-tag-title").html(
-          "EMS Involved"
-        );
-        $("#bolos-officers-involved-tag-title").html(
-          "EMS Involved"
-        );
+        $("#reports-officers-involved-tag-title").html("EMS Involved");
+        $("#bolos-officers-involved-tag-title").html("EMS Involved");
         $(".dispatch-title-ofsomesort").html("Dispatch");
         $(".dispatch-comms-container").fadeIn(0);
         $(".manage-profile-name-input-1").attr("readonly", true);
@@ -4118,14 +4208,18 @@ $(document).ready(() => {
         $(".manage-reports-save").css("display", "block");
         $(".manage-reports-editing-title").css("display", "block");
         $(".vehicle-information-save").css("display", "block");
-        $(".vehicle-information-title").css("margin-right", "0px").css("width", "81%");
-        $(".manage-incidents-title ").css("margin-right", "0px")
-        $(".manage-reports-title").css("margin-right", "0px").css("width", "66%");
+        $(".vehicle-information-title")
+          .css("margin-right", "0px")
+          .css("width", "81%");
+        $(".manage-incidents-title ").css("margin-right", "0px");
+        $(".manage-reports-title")
+          .css("margin-right", "0px")
+          .css("width", "66%");
       } else if (DojJobs[sentJob] !== undefined) {
-        applyCustomTheme(customThemes.doj)
+        applyCustomTheme(customThemes.doj);
         //$(".quote-span").html("Actually useless.");
         //$(".dmv-nav-item").hide();
-        $(".weapons-nav-item").show()
+        $(".weapons-nav-item").show();
         $(".bolo-nav-item").hide();
         $(".dispatch-title-ofsomesort").html("Message Board");
         $(".dispatch-comms-container").fadeOut(0);
@@ -4146,14 +4240,20 @@ $(document).ready(() => {
         $(".manage-reports-save").css("display", "none");
         $(".manage-reports-editing-title").css("display", "none");
         $(".vehicle-information-save").css("display", "none");
-        $(".vehicle-information-title").css("margin-right", "auto").css("width", "95%");
-        $(".manage-incidents-title ").css("margin-right", "auto")
-        $(".manage-reports-title").css("margin-right", "auto").css("width", "95%");
+        $(".vehicle-information-title")
+          .css("margin-right", "auto")
+          .css("width", "95%");
+        $(".manage-incidents-title ").css("margin-right", "auto");
+        $(".manage-reports-title")
+          .css("margin-right", "auto")
+          .css("width", "95%");
       }
     }
   }
-{/* <div class="bulletin-id">ID: ${value.id}</div> */}
-window.addEventListener("message", function (event) {
+  {
+    /* <div class="bulletin-id">ID: ${value.id}</div> */
+  }
+  window.addEventListener("message", function (event) {
     let eventData = event.data;
     $(".dispatch-msg-notif").fadeIn(500);
     if (eventData.type == "show") {
@@ -4165,7 +4265,10 @@ window.addEventListener("message", function (event) {
 
         JobColors(playerJob);
         $(".quote-span").html(randomizeQuote());
-        if (PoliceJobs[playerJob] !== undefined || DojJobs[playerJob] !== undefined) {
+        if (
+          PoliceJobs[playerJob] !== undefined ||
+          DojJobs[playerJob] !== undefined
+        ) {
           $(".manage-profile-licenses-container").removeClass("display_hidden");
           $(".manage-profile-vehs-container").removeClass("display_hidden");
           $(".manage-profile-houses-container").removeClass("display_hidden");
@@ -4204,8 +4307,9 @@ window.addEventListener("message", function (event) {
                 <div class="bulletin-item-title">${value.title}</div>
                 <div class="bulletin-item-info">${value.desc}</div>
                 <div class="bulletin-bottom-info">
-                    <div class="bulletin-date">${value.author
-          } - ${timeAgo(Number(value.time))}</div>
+                    <div class="bulletin-date">${
+                      value.author
+                    } - ${timeAgo(Number(value.time))}</div>
                 </div>
                 </div>`);
       });
@@ -4215,48 +4319,56 @@ window.addEventListener("message", function (event) {
       let bcsoCount = 0;
       let emsCount = 0;
       let dojCount = 0;
-     /*  let fireCount = 0; */
+      /*  let fireCount = 0; */
 
       let activeUnits = eventData.activeUnits;
       let cid = eventData.citizenid;
       let onDutyOnly = eventData.ondutyonly;
-      $(".active-unit-list").html(' ');
-      let unitListHTML = '';
+      $(".active-unit-list").html(" ");
+      let unitListHTML = "";
 
-      activeUnits = Object.values(activeUnits)
+      activeUnits = Object.values(activeUnits);
       activeUnits.forEach((unit) => {
         if (onDutyOnly && unit.duty == 0 && unit.cid != cid) {
-          return
+          return;
         }
-        let status = unit.duty == 1 ? "10-8" : '10-7';
-        let statusColor = unit.duty == 1 ? "green-status" : 'yellow-status';
+        let status = unit.duty == 1 ? "10-8" : "10-7";
+        let statusColor = unit.duty == 1 ? "green-status" : "yellow-status";
         let radioBack = unit.sig100 ? "#7b2c2c" : "var(--color-3)";
         let radio = unit.radio ? unit.radio : "0";
         let callSign = unit.callSign ? unit.callSign : "000";
         let activeInfoJob = `<div class="unit-job active-info-job-unk">UNKNOWN</div>`;
         if (PoliceJobs[unit.unitType] !== undefined) {
-          if (unit.unitType == "police") { policeCount++;
-          activeInfoJob = `<div class="unit-job active-info-job-lspd">LSPD</div>`;
-          } else if(unit.unitType == "bcso")  { bcsoCount++;
+          if (unit.unitType == "police") {
+            policeCount++;
+            activeInfoJob = `<div class="unit-job active-info-job-lspd">LSPD</div>`;
+          } else if (unit.unitType == "bcso") {
+            bcsoCount++;
             activeInfoJob = `<div class="unit-job active-info-job-bcso">BCSO</div>`;
-          } else if(unit.unitType == "lssd")  { bcsoCount++;
+          } else if (unit.unitType == "lssd") {
+            bcsoCount++;
             activeInfoJob = `<div class="unit-job active-info-job-bcso">LSSD</div>`;
-          } else if(unit.unitType == "sasp")  { saspCount++;
+          } else if (unit.unitType == "sasp") {
+            saspCount++;
             activeInfoJob = `<div class="unit-job active-info-job-sasp">SASP</div>`;
-          } else if(unit.unitType == "sast")  { saspCount++;
+          } else if (unit.unitType == "sast") {
+            saspCount++;
             activeInfoJob = `<div class="unit-job active-info-job-sasp">SAST</div>`;
-          } else if(unit.unitType == "sapr")  { saspCount++;
+          } else if (unit.unitType == "sapr") {
+            saspCount++;
             activeInfoJob = `<div class="unit-job active-info-job-sapr">SAPR</div>`;
-          } else if(unit.unitType == "judge")  { dojCount++;
+          } else if (unit.unitType == "judge") {
+            dojCount++;
             activeInfoJob = `<div class="unit-job active-info-job-doj">DOJ</div>`;
-          } else if(unit.unitType == "doc")  { dojCount++;
+          } else if (unit.unitType == "doc") {
+            dojCount++;
             activeInfoJob = `<div class="unit-job active-info-job-doc">DOC</div>`;
           }
         } else if (AmbulanceJobs[unit.unitType] !== undefined) {
-          activeInfoJob = `<div class="unit-job active-info-job-ambulance">Ambulance</div>`
+          activeInfoJob = `<div class="unit-job active-info-job-ambulance">Ambulance</div>`;
           emsCount++;
         } else if (DojJobs[unit.unitType] !== undefined) {
-          activeInfoJob = `<div class="unit-job active-info-job-doj">DOJ</div>`
+          activeInfoJob = `<div class="unit-job active-info-job-doj">DOJ</div>`;
           dojCount++;
         }
 
@@ -4270,15 +4382,13 @@ window.addEventListener("message", function (event) {
                 `;
       });
 
-      $(".active-unit-list").html(unitListHTML)
-
+      $(".active-unit-list").html(unitListHTML);
 
       $("#police-count").html(policeCount);
       $("#sasp-count").html(saspCount);
       $("#bcso-count").html(bcsoCount);
       $("#ems-count").html(emsCount);
       $("#doj-count").html(dojCount);
-
     } else if (eventData.type == "newBulletin") {
       const value = eventData.data;
       $(".bulletin-items-continer")
@@ -4288,8 +4398,8 @@ window.addEventListener("message", function (event) {
                 <div class="bulletin-bottom-info">
                     <div class="bulletin-id">ID: ${value.id}</div>
                     <div class="bulletin-date">${value.author} - ${timeAgo(
-          Number(value.time)
-        )}</div>
+        Number(value.time)
+      )}</div>
                 </div>
             </div>`);
     } else if (eventData.type == "deleteBulletin") {
@@ -4299,15 +4409,17 @@ window.addEventListener("message", function (event) {
     } else if (eventData.type == "warrants") {
       $(".warrants-items").empty();
       $.each(eventData.data, function (index, value) {
-        $('.warrants-items').prepend(`<div class="warrants-item" data-cid=${value.cid} data-id=${value.linkedincident}><div style="display: flex; flex-direction: column; margin-top: 2.5px; margin-left: 0.75vh; width: 100%;">
+        $(
+          ".warrants-items"
+        ).prepend(`<div class="warrants-item" data-cid=${value.cid} data-id=${value.linkedincident}><div style="display: flex; flex-direction: column; margin-top: 2.5px; margin-left: 0.75vh; width: 100%;">
             <div style="display: flex; flex-direction: column;">
                 <div class="warrant-title">${value.name}</div>
             </div>
             <div class="warrant-bottom-info">
                 <div class="warrant-id">Incident ID: ${value.linkedincident}</div>
             </div>
-        </div></div>`)
-    })
+        </div></div>`);
+      });
     } else if (eventData.type == "dispatchmessages") {
       const table = eventData.data;
       LastName = "";
@@ -4325,43 +4437,47 @@ window.addEventListener("message", function (event) {
           if (DispatchNum == 1) {
             $(".dispatch-items")
               .append(`<div class="dispatch-item" style="display: flex; margin-top: 0vh;" >
-                        <img src="${value.profilepic
-                }" class="dispatch-message-profilepic">
+                        <img src="${
+                          value.profilepic
+                        }" class="dispatch-message-profilepic">
                         <div class="dispatch-item-grid">
-                            <div class="dispatch-item-info dispatch-info-job-${value.job
-                }"> ${value.name
-                } <span style="color:#969696; margin-left: 0.5vh; font-size: 12px; font-weight: normal;">${timeAgo(
-                  Number(value.time)
-                )}</span> </div>
-                            <div class="dispatch-item-message" data-author="${value.name
-                }">${value.message}</div>
+                            <div class="dispatch-item-info dispatch-info-job-${
+                              value.job
+                            }"> ${
+              value.name
+            } <span style="color:#969696; margin-left: 0.5vh; font-size: 12px; font-weight: normal;">${timeAgo(
+              Number(value.time)
+            )}</span> </div>
+                            <div class="dispatch-item-message" data-author="${
+                              value.name
+                            }">${value.message}</div>
                         </div>
                         </div>`);
           } else {
             $(".dispatch-items")
               .append(`<div class="dispatch-item" style="display: flex;" >
-                        <img src="${value.profilepic
-                }" class="dispatch-message-profilepic">
+                        <img src="${
+                          value.profilepic
+                        }" class="dispatch-message-profilepic">
                         <div class="dispatch-item-grid">
-                            <div class="dispatch-item-info dispatch-info-job-${value.job
-                }"> ${value.name
-                } <span style="color:#969696; margin-left: 0.5vh; font-size: 12px; font-weight: normal;">${timeAgo(
-                  Number(value.time)
-                )}</span> </div>
-                            <div class="dispatch-item-message" data-author="${value.name
-                }">${value.message}</div>
+                            <div class="dispatch-item-info dispatch-info-job-${
+                              value.job
+                            }"> ${
+              value.name
+            } <span style="color:#969696; margin-left: 0.5vh; font-size: 12px; font-weight: normal;">${timeAgo(
+              Number(value.time)
+            )}</span> </div>
+                            <div class="dispatch-item-message" data-author="${
+                              value.name
+                            }">${value.message}</div>
                         </div>
                         </div>`);
           }
         }
         LastName = value.name;
-        $(".dispatch-items").scrollTop(
-          $(".dispatch-items")[0].scrollHeight
-        );
+        $(".dispatch-items").scrollTop($(".dispatch-items")[0].scrollHeight);
       });
-      $(".dispatch-items").scrollTop(
-        $(".dispatch-items")[0].scrollHeight
-      );
+      $(".dispatch-items").scrollTop($(".dispatch-items")[0].scrollHeight);
     } else if (eventData.type == "dispatchmessage") {
       const value = eventData.data;
       DispatchNum = DispatchNum + 1;
@@ -4377,31 +4493,39 @@ window.addEventListener("message", function (event) {
           if (DispatchNum == 1) {
             $(".dispatch-items")
               .append(`<div class="dispatch-item" style="display: flex; margin-top: 0vh;" >
-                        <img src="${value.profilepic
-                }" class="dispatch-message-profilepic">
+                        <img src="${
+                          value.profilepic
+                        }" class="dispatch-message-profilepic">
                         <div class="dispatch-item-grid">
-                            <div class="dispatch-item-info dispatch-info-job-${value.job
-                }"> ${value.name
-                } <span style="color:#969696; margin-left: 0.5vh; font-size: 12px; font-weight: normal;">${timeAgo(
-                  Number(value.time)
-                )}</span> </div>
-                            <div class="dispatch-item-message" data-author="${value.name
-                }">${value.message}</div>
+                            <div class="dispatch-item-info dispatch-info-job-${
+                              value.job
+                            }"> ${
+              value.name
+            } <span style="color:#969696; margin-left: 0.5vh; font-size: 12px; font-weight: normal;">${timeAgo(
+              Number(value.time)
+            )}</span> </div>
+                            <div class="dispatch-item-message" data-author="${
+                              value.name
+                            }">${value.message}</div>
                         </div>
                         </div>`);
           } else {
             $(".dispatch-items")
               .append(`<div class="dispatch-item" style="display: flex;" >
-                        <img src="${value.profilepic
-                }" class="dispatch-message-profilepic">
+                        <img src="${
+                          value.profilepic
+                        }" class="dispatch-message-profilepic">
                         <div class="dispatch-item-grid">
-                            <div class="dispatch-item-info dispatch-info-job-${value.job
-                }"> ${value.name
-                } <span style="color:#969696; margin-left: 0.5vh; font-size: 12px; font-weight: normal;">${timeAgo(
-                  Number(value.time)
-                )}</span> </div>
-                            <div class="dispatch-item-message" data-author="${value.name
-                }">${value.message}</div>
+                            <div class="dispatch-item-info dispatch-info-job-${
+                              value.job
+                            }"> ${
+              value.name
+            } <span style="color:#969696; margin-left: 0.5vh; font-size: 12px; font-weight: normal;">${timeAgo(
+              Number(value.time)
+            )}</span> </div>
+                            <div class="dispatch-item-message" data-author="${
+                              value.name
+                            }">${value.message}</div>
                         </div>
                         </div>`);
           }
@@ -4415,21 +4539,39 @@ window.addEventListener("message", function (event) {
           })
         );
       }
-      $(".dispatch-items").scrollTop(
-        $(".dispatch-items")[0].scrollHeight
-      );
+      $(".dispatch-items").scrollTop($(".dispatch-items")[0].scrollHeight);
     } else if (eventData.type == "call") {
       const value = eventData.data;
       DispatchMAP(value);
-      if (value && value?.job?.includes(playerJob) || value?.jobs.includes(PlayerJobType)) {
+      if (
+        (value && value?.job?.includes(playerJob)) ||
+        value?.jobs.includes(PlayerJobType)
+      ) {
         const prio = value["priority"];
-        let DispatchItem = `<div class="active-calls-item" data-id="${value.callId || value.id}" data-canrespond="false"><div class="active-call-inner-container"><div class="call-item-top"><div class="call-number">#${value.callId || value.id}</div><div class="call-code priority-${value.priority}">${value.dispatchCode || value.code}</div><div class="call-title">${value.dispatchMessage || value.message}</div><div class="call-radio">${value.units.length}</div></div><div class="call-item-bottom">`;
+        let DispatchItem = `<div class="active-calls-item" data-id="${
+          value.callId || value.id
+        }" data-canrespond="false"><div class="active-call-inner-container"><div class="call-item-top"><div class="call-number">#${
+          value.callId || value.id
+        }</div><div class="call-code priority-${value.priority}">${
+          value.dispatchCode || value.code
+        }</div><div class="call-title">${
+          value.dispatchMessage || value.message
+        }</div><div class="call-radio">${
+          value.units.length
+        }</div></div><div class="call-item-bottom">`;
 
-        if (
-          value.dispatchCode == "911" ||
-          value.dispatchCode == "311"
-        ) {
-          DispatchItem = `<div class="active-calls-item" data-id="${value.callId || value.id}" data-canrespond="true"><div class="active-call-inner-container"><div class="call-item-top"><div class="call-number">#${value.callId || value.id}</div><div class="call-code priority-${value.priority}">${value.dispatchCode || value.code}</div><div class="call-title">${value.dispatchMessage || value.message}</div><div class="call-radio">${value.units.length}</div></div><div class="call-item-bottom">`;
+        if (value.dispatchCode == "911" || value.dispatchCode == "311") {
+          DispatchItem = `<div class="active-calls-item" data-id="${
+            value.callId || value.id
+          }" data-canrespond="true"><div class="active-call-inner-container"><div class="call-item-top"><div class="call-number">#${
+            value.callId || value.id
+          }</div><div class="call-code priority-${value.priority}">${
+            value.dispatchCode || value.code
+          }</div><div class="call-title">${
+            value.dispatchMessage || value.message
+          }</div><div class="call-radio">${
+            value.units.length
+          }</div></div><div class="call-item-bottom">`;
         }
 
         if (value["time"]) {
@@ -4438,11 +4580,13 @@ window.addEventListener("message", function (event) {
           )}</div>`;
         }
 
-        if (value["firstStreet"] || value['street']) {
-          DispatchItem += `<div class="call-bottom-info"><span class="fas fa-map-pin"></span>${value.firstStreet || value.street}</div>`;
+        if (value["firstStreet"] || value["street"]) {
+          DispatchItem += `<div class="call-bottom-info"><span class="fas fa-map-pin"></span>${
+            value.firstStreet || value.street
+          }</div>`;
         }
 
-        if (value['camId']) {
+        if (value["camId"]) {
           DispatchItem += `<div class="call-bottom-info"><span class="fas fa-camera"></span>${value.camId}</div>`;
         }
 
@@ -4482,8 +4626,10 @@ window.addEventListener("message", function (event) {
           DispatchItem += `<div class="call-bottom-info"><span class="fas fa-car"></span>${value["model"]}</div>`;
         }
 
-        if (value["firstColor"] || value['color']) {
-          DispatchItem += `<div class="call-bottom-info"><span class="fas fa-spray-can"></span>${value["firstColor"] || value['color']}</div>`;
+        if (value["firstColor"] || value["color"]) {
+          DispatchItem += `<div class="call-bottom-info"><span class="fas fa-spray-can"></span>${
+            value["firstColor"] || value["color"]
+          }</div>`;
         }
 
         if (value["automaticGunfire"] == true) {
@@ -4503,9 +4649,7 @@ window.addEventListener("message", function (event) {
         }
 
         DispatchItem += `</div></div></div>`;
-        $(".active-calls-list").prepend(
-          $(DispatchItem).hide().fadeIn("slow")
-        );
+        $(".active-calls-list").prepend($(DispatchItem).hide().fadeIn("slow"));
       }
     } else if (eventData.type == "attachedUnits") {
       const table = eventData.data;
@@ -4515,16 +4659,18 @@ window.addEventListener("message", function (event) {
         $(".close-all").css("filter", "brightness(15%)");
         $(".dispatch-attached-units-holder").empty();
         $.each(table, function (index, value) {
-        const fullname = value.charinfo.firstname + ' ' + value.charinfo.lastname;
-        const callsign = value.metadata.callsign;
-        const jobLabel = value.job.label;
-      
+          const fullname =
+            value.charinfo.firstname + " " + value.charinfo.lastname;
+          const callsign = value.metadata.callsign;
+          const jobLabel = value.job.label;
+
           $(".dispatch-attached-units-holder").prepend(
             `<div class="dispatch-attached-unit-item" data-id="${value.citizenid}">
               <div class="unit-job active-info-job-${value.job.name}">${jobLabel}</div>
               <div class="unit-name">(${callsign}) ${fullname}</div>
               <div class="unit-radio"><!-- Handle channel if available --></div>
-            </div> `);
+            </div> `
+          );
         });
         setTimeout(() => {
           $(".dispatch-attached-units-container").attr("id", eventData.callid);
@@ -4533,7 +4679,8 @@ window.addEventListener("message", function (event) {
     } else if (eventData.type == "sendCallResponse") {
       if ($(".respond-calls-container").data("id") == eventData.callid) {
         $(".respond-calls-responses").prepend(
-          `<div class="respond-calls-response"> ${eventData["name"]
+          `<div class="respond-calls-response"> ${
+            eventData["name"]
           } responded "${eventData["message"]}" - ${timeAgo(
             Number(eventData.time)
           )}. </div>`
@@ -4551,26 +4698,45 @@ window.addEventListener("message", function (event) {
       }, 1000);
       $.each(table, function (index, value) {
         $(".respond-calls-responses").prepend(
-          `<div class="respond-calls-response"> ${value["name"]
-          } responded "${value["message"]}" - ${timeAgo(
-            Number(value.time)
-          )}. </div>`
+          `<div class="respond-calls-response"> ${value["name"]} responded "${
+            value["message"]
+          }" - ${timeAgo(Number(value.time))}. </div>`
         );
       });
     } else if (eventData.type == "calls") {
       const table = eventData.data;
       $(".active-calls-list").empty();
       $.each(table, function (index, value) {
-        if (value && value?.job?.includes(playerJob) || value?.jobs.includes(PlayerJobType)) {
+        if (
+          (value && value?.job?.includes(playerJob)) ||
+          value?.jobs.includes(PlayerJobType)
+        ) {
           DispatchMAP(value);
           const prio = value["priority"];
-          let DispatchItem = `<div class="active-calls-item" data-id="${value.callId || value.id}" data-canrespond="false"><div class="active-call-inner-container"><div class="call-item-top"><div class="call-number">#${value.callId || value.id}</div><div class="call-code priority-${value.priority}">${value.dispatchCode || value.code}</div><div class="call-title">${value.dispatchMessage || value.message}</div><div class="call-radio">${value.units.length}</div></div><div class="call-item-bottom">`;
+          let DispatchItem = `<div class="active-calls-item" data-id="${
+            value.callId || value.id
+          }" data-canrespond="false"><div class="active-call-inner-container"><div class="call-item-top"><div class="call-number">#${
+            value.callId || value.id
+          }</div><div class="call-code priority-${value.priority}">${
+            value.dispatchCode || value.code
+          }</div><div class="call-title">${
+            value.dispatchMessage || value.message
+          }</div><div class="call-radio">${
+            value.units.length
+          }</div></div><div class="call-item-bottom">`;
 
-          if (
-            value.dispatchCode == "911" ||
-            value.dispatchCode == "311"
-          ) {
-            DispatchItem = `<div class="active-calls-item" data-id="${value.callId || value.id}" data-canrespond="true"><div class="active-call-inner-container"><div class="call-item-top"><div class="call-number">#${value.callId || value.id}</div><div class="call-code priority-${value.priority}">${value.dispatchCode || value.code}</div><div class="call-title">${value.dispatchMessage || value.message}</div><div class="call-radio">${value.units.length}</div></div><div class="call-item-bottom">`;
+          if (value.dispatchCode == "911" || value.dispatchCode == "311") {
+            DispatchItem = `<div class="active-calls-item" data-id="${
+              value.callId || value.id
+            }" data-canrespond="true"><div class="active-call-inner-container"><div class="call-item-top"><div class="call-number">#${
+              value.callId || value.id
+            }</div><div class="call-code priority-${value.priority}">${
+              value.dispatchCode || value.code
+            }</div><div class="call-title">${
+              value.dispatchMessage || value.message
+            }</div><div class="call-radio">${
+              value.units.length
+            }</div></div><div class="call-item-bottom">`;
           }
 
           if (value["time"]) {
@@ -4579,11 +4745,13 @@ window.addEventListener("message", function (event) {
             )}</div>`;
           }
 
-          if (value["firstStreet"] || value['street']) {
-            DispatchItem += `<div class="call-bottom-info"><span class="fas fa-map-pin"></span>${value.firstStreet || value.street}</div>`;
+          if (value["firstStreet"] || value["street"]) {
+            DispatchItem += `<div class="call-bottom-info"><span class="fas fa-map-pin"></span>${
+              value.firstStreet || value.street
+            }</div>`;
           }
 
-          if (value['camId']) {
+          if (value["camId"]) {
             DispatchItem += `<div class="call-bottom-info"><span class="fas fa-camera"></span>${value.camId}</div>`;
           }
 
@@ -4612,7 +4780,9 @@ window.addEventListener("message", function (event) {
           }
 
           if (value["firstColor"] || value["color"]) {
-            DispatchItem += `<div class="call-bottom-info"><span class="fas fa-spray-can"></span>${value["firstColor"] || value["color"]}</div>`;
+            DispatchItem += `<div class="call-bottom-info"><span class="fas fa-spray-can"></span>${
+              value["firstColor"] || value["color"]
+            }</div>`;
           }
 
           if (value["automaticGunfire"] == true) {
@@ -4650,8 +4820,9 @@ window.addEventListener("message", function (event) {
                     </div>
                     <div class="incidents-bottom-holder">
                         <div class="incedent-report-id">ID: ${value.id}</div>
-                        <div class="incedent-report-time-ago">${value.author
-          } - ${timeAgo(Number(value.time))}</div>
+                        <div class="incedent-report-time-ago">${
+                          value.author
+                        } - ${timeAgo(Number(value.time))}</div>
                     </div>
                 </div>`
         );
@@ -4719,51 +4890,43 @@ window.addEventListener("message", function (event) {
       $(".manage-incidents-editing-title").html(
         "You are currently editing incident " + table["id"]
       );
-      $(".manage-incidents-editing-title").data(
-        "id",
-        Number(table["id"])
-      );
+      $(".manage-incidents-editing-title").data("id", Number(table["id"]));
 
       $(".manage-incidents-tags-add-btn").css("pointer-events", "auto");
-      $(".manage-incidents-reports-content").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-officers-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-civilians-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-evidence-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".associated-incidents-tags-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-
+      $(".manage-incidents-reports-content").css("pointer-events", "auto");
+      $(".manage-incidents-officers-add-btn").css("pointer-events", "auto");
+      $(".manage-incidents-civilians-add-btn").css("pointer-events", "auto");
+      $(".manage-incidents-evidence-add-btn").css("pointer-events", "auto");
+      $(".associated-incidents-tags-add-btn").css("pointer-events", "auto");
 
       $("#manage-incidents-title-input").val(table["title"]);
       $(".manage-incidents-reports-content").trumbowyg({
         changeActiveDropdownIcon: true,
         imageWidthModalEdit: true,
         btns: [
-          ['foreColor', 'backColor','fontfamily','fontsize','indent', 'outdent'],
-          ['strong', 'em',], ['insertImage'],
-          ['viewHTML'],
-          ['undo', 'redo'],
-          ['formatting'],
-          ['superscript', 'subscript'],
-          ['link'],
-          ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-          ['horizontalRule']
+          [
+            "foreColor",
+            "backColor",
+            "fontfamily",
+            "fontsize",
+            "indent",
+            "outdent",
+          ],
+          ["strong", "em"],
+          ["insertImage"],
+          ["viewHTML"],
+          ["undo", "redo"],
+          ["formatting"],
+          ["superscript", "subscript"],
+          ["link"],
+          ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
+          ["horizontalRule"],
         ],
       });
-      $(".manage-incidents-reports-content").trumbowyg('html', table["details"]);
+      $(".manage-incidents-reports-content").trumbowyg(
+        "html",
+        table["details"]
+      );
 
       $(".manage-incidents-tags-holder").empty();
       $.each(table["tags"], function (index, value) {
@@ -4794,7 +4957,10 @@ window.addEventListener("message", function (event) {
       });
 
       $(".manage-incidents-title-holder").empty();
-      if (PoliceJobs[playerJob] !== undefined || AmbulanceJobs[playerJob] !== undefined) {
+      if (
+        PoliceJobs[playerJob] !== undefined ||
+        AmbulanceJobs[playerJob] !== undefined
+      ) {
         $(".manage-incidents-title-holder").prepend(
           `
             <div class="manage-incidents-title">Manage Incident</div>
@@ -4840,7 +5006,9 @@ window.addEventListener("message", function (event) {
         const cid = value.cid;
 
         // If the associated field is not checked, then populate the recommended fine and sentence fields
-        const associatedIncidentsContainer = (value.associated != 1) && `
+        const associatedIncidentsContainer =
+          value.associated != 1 &&
+          `
           <div class="associated-incidents-user-holder" data-name="${cid}" ></div>
           <div class="manage-incidents-title-tag" data-id="${cid}">Recommended Fine</div>
           <div class="associated-incidents-fine-input" data-id="${cid}"><img src="img/h7S5f9J.webp"> <input placeholder="0" disabled class="fine-recommended-amount" id="fine-recommended-amount" data-id="${cid}" type="number"></div>
@@ -4853,7 +5021,11 @@ window.addEventListener("message", function (event) {
           <div class="associated-incidents-controls" data-id="${cid}">
             <div id="jail-button" class="control-button" data-id="${cid}"><span class="fa-solid fa-building-columns" style="margin-top: 3.5px;"></span> Jail</div>
             <div id="fine-button" class="control-button" data-id="${cid}"><span class="fa-solid fa-file-invoice-dollar" style="margin-top: 3.5px;"></span> Fine</div>
-            ${canSendToCommunityService ? `<div id="community-service-button" class="control-button" data-id="${cid}"> <span class="fa-solid fa-person-digging" style="margin-top: 3.5px;"></span>Community Service</div>` : ''}
+            ${
+              canSendToCommunityService
+                ? `<div id="community-service-button" class="control-button" data-id="${cid}"> <span class="fa-solid fa-person-digging" style="margin-top: 3.5px;"></span>Community Service</div>`
+                : ""
+            }
           </div>
         `;
 
@@ -4889,9 +5061,7 @@ window.addEventListener("message", function (event) {
 
         const charges = value["charges"];
         for (var i = 0; i < charges.length; i++) {
-          const randomNum = Math.ceil(
-            Math.random() * 1000
-          ).toString();
+          const randomNum = Math.ceil(Math.random() * 1000).toString();
           $(`[data-name="${cid}"]`).prepend(
             `<div class="white-tag" data-link="${randomNum}" data-id="${cid}">${charges[i]}</div>`
           );
@@ -4939,18 +5109,26 @@ window.addEventListener("message", function (event) {
         changeActiveDropdownIcon: true,
         imageWidthModalEdit: true,
         btns: [
-          ['foreColor', 'backColor','fontfamily','fontsize','indent', 'outdent'],
-          ['strong', 'em',], ['insertImage'],
-          ['viewHTML'],
-          ['undo', 'redo'],
-          ['formatting'],
-          ['superscript', 'subscript'],
-          ['link'],
-          ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-          ['horizontalRule']
+          [
+            "foreColor",
+            "backColor",
+            "fontfamily",
+            "fontsize",
+            "indent",
+            "outdent",
+          ],
+          ["strong", "em"],
+          ["insertImage"],
+          ["viewHTML"],
+          ["undo", "redo"],
+          ["formatting"],
+          ["superscript", "subscript"],
+          ["link"],
+          ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
+          ["horizontalRule"],
         ],
       });
-      $(".manage-bolos-reports-content").trumbowyg('html', table["detail"]);
+      $(".manage-bolos-reports-content").trumbowyg("html", table["detail"]);
 
       $(".manage-bolos-tags-holder").empty();
       $.each(table["tags"], function (index, value) {
@@ -4990,8 +5168,9 @@ window.addEventListener("message", function (event) {
                     </div>
                     <div class="bolo-bottom-holder">
                         <div class="bolo-report-id">ID: ${value.id}</div>
-                        <div class="bolo-report-time-ago">${value.author
-          } - ${timeAgo(Number(value.time))}</div>
+                        <div class="bolo-report-time-ago">${
+                          value.author
+                        } - ${timeAgo(Number(value.time))}</div>
                     </div>
                 </div>`
         );
@@ -5008,7 +5187,10 @@ window.addEventListener("message", function (event) {
           $(".bolos-search-refresh").empty();
           $(".bolos-search-refresh").html("Refresh");
           canRefreshBolo = true;
-          $.post(`https://${GetParentResourceName()}/getAllBolos`, JSON.stringify({}));
+          $.post(
+            `https://${GetParentResourceName()}/getAllBolos`,
+            JSON.stringify({})
+          );
         }, 1500);
       }
       $(".manage-bolos-editing-title").html(
@@ -5027,7 +5209,10 @@ window.addEventListener("message", function (event) {
           $(".reports-search-refresh").empty();
           $(".reports-search-refresh").html("Refresh");
           canRefreshReports = true;
-          $.post(`https://${GetParentResourceName()}/getAllReports`, JSON.stringify({}));
+          $.post(
+            `https://${GetParentResourceName()}/getAllReports`,
+            JSON.stringify({})
+          );
         }, 1500);
       }
       $(".manage-reports-editing-title").html(
@@ -5043,13 +5228,15 @@ window.addEventListener("message", function (event) {
           `<div class="reports-item" data-id="${value.id}">
                     <div class="reports-top-holder">
                         <div class="reports-item-title">${value.title}</div>
-                        <div class="reports-report-name">${value.type
-          } Report</div>
+                        <div class="reports-report-name">${
+                          value.type
+                        } Report</div>
                     </div>
                     <div class="reports-bottom-holder">
                         <div class="reports-report-id">ID: ${value.id}</div>
-                        <div class="reports-report-time-ago">${value.author
-          } - ${timeAgo(Number(value.time))}</div>
+                        <div class="reports-report-time-ago">${
+                          value.author
+                        } - ${timeAgo(Number(value.time))}</div>
                     </div>
                 </div>`
         );
@@ -5094,18 +5281,26 @@ window.addEventListener("message", function (event) {
         changeActiveDropdownIcon: true,
         imageWidthModalEdit: true,
         btns: [
-          ['foreColor', 'backColor','fontfamily','fontsize','indent', 'outdent'],
-          ['strong', 'em',], ['insertImage'],
-          ['viewHTML'],
-          ['undo', 'redo'],
-          ['formatting'],
-          ['superscript', 'subscript'],
-          ['link'],
-          ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-          ['horizontalRule']
+          [
+            "foreColor",
+            "backColor",
+            "fontfamily",
+            "fontsize",
+            "indent",
+            "outdent",
+          ],
+          ["strong", "em"],
+          ["insertImage"],
+          ["viewHTML"],
+          ["undo", "redo"],
+          ["formatting"],
+          ["superscript", "subscript"],
+          ["link"],
+          ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
+          ["horizontalRule"],
         ],
       });
-      $(".manage-reports-reports-content").trumbowyg('html', table["details"]);
+      $(".manage-reports-reports-content").trumbowyg("html", table["details"]);
 
       $(".manage-reports-tags-holder").empty();
       $.each(table["tags"], function (index, value) {
@@ -5135,9 +5330,7 @@ window.addEventListener("message", function (event) {
           `<div class="tag">${value}</div>`
         );
       });
-
     } else if (eventData.type == "searchedVehicles") {
-
     } else if (eventData.type == "getVehicleData") {
       impoundChanged = false;
       let table = eventData.data;
@@ -5185,16 +5378,22 @@ window.addEventListener("message", function (event) {
         stolen = "green-tag";
       }
 
-      $(".vehicle-tags").append(`<div class="vehicle-tag ${impound} impound-tag">Impound</div>`);
+      $(".vehicle-tags").append(
+        `<div class="vehicle-tag ${impound} impound-tag">Impound</div>`
+      );
       $(".vehicle-tags").append(`<div class="vehicle-tag ${bolo}">BOLO</div>`);
-      $(".vehicle-tags").append(`<div class="vehicle-tag ${codefive} code5-tag">Code 5</div>`);
-      $(".vehicle-tags").append(`<div class="vehicle-tag ${stolen} stolen-tag">Stolen</div>`);
+      $(".vehicle-tags").append(
+        `<div class="vehicle-tag ${codefive} code5-tag">Code 5</div>`
+      );
+      $(".vehicle-tags").append(
+        `<div class="vehicle-tag ${stolen} stolen-tag">Stolen</div>`
+      );
       $(".vehicle-info-imageurl-input").val(table["image"]);
     } else if (eventData.type == "getWeaponData") {
       impoundChanged = false;
       let table = eventData.data;
 
-      $(".weapon-information-title-holder").data( "dbid", table["id"] );
+      $(".weapon-information-title-holder").data("dbid", table["id"]);
 
       $(".weapon-info-serial-input").val(table["serial"]);
       $(".weapon-info-owner-input").val(table["owner"]);
@@ -5233,32 +5432,19 @@ window.addEventListener("message", function (event) {
         openContextMenu(e, args);
       });
     } else if (eventData.type == "updateVehicleDbId") {
-      $(".vehicle-information-title-holder").data("dbid", Number(eventData.data));
+      $(".vehicle-information-title-holder").data(
+        "dbid",
+        Number(eventData.data)
+      );
     } else if (eventData.type == "updateIncidentDbId") {
       $(".manage-incidents-editing-title").data("id", Number(eventData.data));
 
       $(".manage-incidents-tags-add-btn").css("pointer-events", "auto");
-      $(".manage-incidents-reports-content").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-officers-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-civilians-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".manage-incidents-evidence-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-      $(".associated-incidents-tags-add-btn").css(
-        "pointer-events",
-        "auto"
-      );
-
+      $(".manage-incidents-reports-content").css("pointer-events", "auto");
+      $(".manage-incidents-officers-add-btn").css("pointer-events", "auto");
+      $(".manage-incidents-civilians-add-btn").css("pointer-events", "auto");
+      $(".manage-incidents-evidence-add-btn").css("pointer-events", "auto");
+      $(".associated-incidents-tags-add-btn").css("pointer-events", "auto");
     } else if (eventData.type == "callDetach") {
       $(".active-calls-item")
         .filter("[data-id='" + eventData.callid + "']")
@@ -5278,7 +5464,8 @@ window.addEventListener("message", function (event) {
       $(".stafflogs-box").empty();
       $.each(table, function (index, value) {
         $(".stafflogs-box").append(
-          `<p style="margin : 0; padding-top:0.8vh;">► ${value.text
+          `<p style="margin : 0; padding-top:0.8vh;">► ${
+            value.text
           } <span style="color: grey; float: right; padding-right: 1vh;">(${timeAgo(
             Number(value.time)
           )})</span></p>`
@@ -5300,9 +5487,7 @@ window.addEventListener("message", function (event) {
       });
 
       $(".impound-plate").val(plate).attr("disabled", "disabled");
-      $(".impound-linkedreport")
-        .val(linkedreport)
-        .attr("disabled", "disabled");
+      $(".impound-linkedreport").val(linkedreport).attr("disabled", "disabled");
       $(".impound-fee")
         .val("$" + fee)
         .attr("disabled", "disabled");
@@ -5337,20 +5522,32 @@ window.addEventListener("message", function (event) {
 function fidgetSpinner(page) {
   $(".close-all").fadeOut(0);
   $(".container-load").fadeIn(0);
-  if (page == ".dashboard-page-container"){
-    $.post(`https://${GetParentResourceName()}/getAllDashboardData`, JSON.stringify({}));
+  if (page == ".dashboard-page-container") {
+    $.post(
+      `https://${GetParentResourceName()}/getAllDashboardData`,
+      JSON.stringify({})
+    );
   }
   if (page == ".bolos-page-container") {
-    $.post(`https://${GetParentResourceName()}/getAllBolos`, JSON.stringify({}));
+    $.post(
+      `https://${GetParentResourceName()}/getAllBolos`,
+      JSON.stringify({})
+    );
   }
   if (page == ".reports-page-container") {
-    $.post(`https://${GetParentResourceName()}/getAllReports`, JSON.stringify({}));
+    $.post(
+      `https://${GetParentResourceName()}/getAllReports`,
+      JSON.stringify({})
+    );
   }
   if (page == ".stafflogs-page-container") {
     $.post(`https://${GetParentResourceName()}/getAllLogs`, JSON.stringify({}));
   }
   if (page == ".incidents-page-container") {
-    $.post(`https://${GetParentResourceName()}/getAllIncidents`, JSON.stringify({}));
+    $.post(
+      `https://${GetParentResourceName()}/getAllIncidents`,
+      JSON.stringify({})
+    );
   }
   setTimeout(() => {
     $(".container-load").fadeOut(0);
@@ -5360,7 +5557,7 @@ function fidgetSpinner(page) {
 
 function timeShit() {
   let localDate = new Date();
-  const myTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+  const myTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   date = localDate.toLocaleDateString("en-US", {
     timeZone: myTimeZone,
   });
@@ -5390,21 +5587,31 @@ function addTag(tagInput) {
 function sendToJail(citizenId, customSentence, recommendedSentence) {
   const sentence = Number(customSentence) || Number(recommendedSentence);
 
-  $.post(`https://${GetParentResourceName()}/sendToJail`, JSON.stringify({
-    citizenId,
-    sentence,
-  }));
+  $.post(
+    `https://${GetParentResourceName()}/sendToJail`,
+    JSON.stringify({
+      citizenId,
+      sentence,
+    })
+  );
 }
 
 // Use the customSentence if defined, otherwise use the recommendedSentence
 // This uses the assumption that customSentence will be 0 if not defined
-function sendToCommunityService(citizenId, customSentence, recommendedSentence) {
+function sendToCommunityService(
+  citizenId,
+  customSentence,
+  recommendedSentence
+) {
   const sentence = Number(customSentence) || Number(recommendedSentence);
 
-  $.post(`https://${GetParentResourceName()}/sendToCommunityService`, JSON.stringify({
-    citizenId,
-    sentence,
-  }));
+  $.post(
+    `https://${GetParentResourceName()}/sendToCommunityService`,
+    JSON.stringify({
+      citizenId,
+      sentence,
+    })
+  );
 }
 
 // Use the customFine if defined, otherwise use the recommendedFine
@@ -5412,11 +5619,14 @@ function sendToCommunityService(citizenId, customSentence, recommendedSentence) 
 function sendFine(citizenId, customFine, recommendedFine, incidentId) {
   const fine = Number(customFine) || Number(recommendedFine);
 
-  $.post(`https://${GetParentResourceName()}/sendFine`, JSON.stringify({
-    citizenId,
-    fine,
-    incidentId,
-  }));
+  $.post(
+    `https://${GetParentResourceName()}/sendFine`,
+    JSON.stringify({
+      citizenId,
+      fine,
+      incidentId,
+    })
+  );
 }
 // Context menu
 
@@ -5495,11 +5705,11 @@ function expandImage(url) {
 }
 
 function copyImageSource(url) {
-  const el = document.createElement('textarea');
+  const el = document.createElement("textarea");
   el.value = url;
   document.body.appendChild(el);
   el.select();
-  document.execCommand('copy');
+  document.execCommand("copy");
   document.body.removeChild(el);
 }
 
@@ -5541,9 +5751,9 @@ function onMouseDownIncidents(e) {
 
 function titleCase(str) {
   return str
-    .split(' ')
+    .split(" ")
     .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
+    .join(" ");
 }
 
 function searchProfilesResults(result) {
@@ -5599,14 +5809,25 @@ function searchProfilesResults(result) {
 
     if (licArr.length == 0 || licArr.length == undefined) {
       var licenseTypes = licenseTypesGlobal;
-      licArr = Object.entries(licenseTypes.reduce((licenseType, licenseValue) => (licenseType[licenseValue] = false, licenseType), {}));
+      licArr = Object.entries(
+        licenseTypes.reduce(
+          (licenseType, licenseValue) => (
+            (licenseType[licenseValue] = false), licenseType
+          ),
+          {}
+        )
+      );
     }
 
-    if (licArr.length > 0 && (PoliceJobs[playerJob] !== undefined || DojJobs[playerJob] !== undefined)) {
+    if (
+      licArr.length > 0 &&
+      (PoliceJobs[playerJob] !== undefined || DojJobs[playerJob] !== undefined)
+    ) {
       for (const [lic, hasLic] of licArr) {
-        let tagColour =
-          hasLic == true ? "green-tag" : "red-tag";
-        licences += `<span class="license-tag ${tagColour}">${titleCase(lic)}</span>`;
+        let tagColour = hasLic == true ? "green-tag" : "red-tag";
+        licences += `<span class="license-tag ${tagColour}">${titleCase(
+          lic
+        )}</span>`;
       }
     }
 
@@ -5616,19 +5837,18 @@ function searchProfilesResults(result) {
 
     if (value.convictions < 5) {
       convictions = "green-tag";
-    } else if (
-      value.convictions > 4 &&
-      value.convictions < 15
-    ) {
+    } else if (value.convictions > 4 && value.convictions < 15) {
       convictions = "orange-tag";
     }
 
-    if (value.pp == '') {
-      value.pp = 'img/not-found.webp'
+    if (value.pp == "") {
+      value.pp = "img/not-found.webp";
     }
 
     profileHTML += `
-    <div class="profile-item" data-id="${value.citizenid}" data-fingerprint="${value.fingerprint}">
+    <div class="profile-item" data-id="${value.citizenid}" data-fingerprint="${
+      value.fingerprint
+    }">
         <img src="${value.pp}" class="profile-image">
         <div style="display: flex; flex-direction: column; margin-top: 2.5px; margin-left: 5px; width: 100%; padding: 5px;">
         <div style="display: flex; flex-direction: column;">
@@ -5637,12 +5857,18 @@ function searchProfilesResults(result) {
                 ${licences}
             </div>
             <div class="profile-criminal-tags">
-                <span class="license-tag ${warrant}">${value.warrant ? "Active" : "No"} Warrant</span>
-                <span class="license-tag ${convictions}">${value.convictions} Convictions </span>
+                <span class="license-tag ${warrant}">${
+      value.warrant ? "Active" : "No"
+    } Warrant</span>
+                <span class="license-tag ${convictions}">${
+      value.convictions
+    } Convictions </span>
             </div>
         </div>
         <div class="profile-bottom-info">
-            <div class="profile-id"><span class="fas fa-id-card"></span> Citizen ID: ${value.citizenid}</div>&nbsp;
+            <div class="profile-id"><span class="fas fa-id-card"></span> Citizen ID: ${
+              value.citizenid
+            }</div>&nbsp;
         </div>
         </div>
     </div>
@@ -5667,7 +5893,7 @@ window.addEventListener("message", (event) => {
 
 function updateOfficerData(officerData) {
   // Convert totalTime to totalSeconds for sorting
-  officerData.forEach(officer => {
+  officerData.forEach((officer) => {
     officer.totalSeconds = timeStringToSeconds(officer.totalTime);
   });
 
@@ -5675,52 +5901,60 @@ function updateOfficerData(officerData) {
   officerData.sort((a, b) => b.totalSeconds - a.totalSeconds);
 
   // Efficiently create officer elements
-  const officerElements = officerData.map((officer, index) => {
-    const position = getPosition(index + 1);
-    const color = index < 3 ? 'white' : 'grey';
+  const officerElements = officerData
+    .map((officer, index) => {
+      const position = getPosition(index + 1);
+      const color = index < 3 ? "white" : "grey";
 
-    return `<div class="leaderboard-box-test" style="font-size: 1.3vh; font-weight: lighter; color: ${color};">
+      return `<div class="leaderboard-box-test" style="font-size: 1.3vh; font-weight: lighter; color: ${color};">
       ► ${position}: ${officer.name} (${officer.callsign})<span style="float: right; padding-right: 1vh;">${officer.totalTime}</span>
     </div>`;
-  }).join('');
+    })
+    .join("");
 
   // Update the DOM once
-  const leaderboardBox = document.querySelector('.leaderboard-box');
+  const leaderboardBox = document.querySelector(".leaderboard-box");
   leaderboardBox.innerHTML = officerElements;
 }
 
 function getPosition(rank) {
   const ordinal = rank % 10;
   if (rank === 11 || rank === 12 || rank === 13) {
-    return rank + 'th';
+    return rank + "th";
   }
-  return rank + (ordinal === 1 ? 'st' : ordinal === 2 ? 'nd' : ordinal === 3 ? 'rd' : 'th');
+  return (
+    rank +
+    (ordinal === 1 ? "st" : ordinal === 2 ? "nd" : ordinal === 3 ? "rd" : "th")
+  );
 }
 
 function timeStringToSeconds(t) {
   if (!t) return 0;
 
-  let days = 0, hours = 0, minutes = 0, seconds = 0;
-  let daysPart = '0';
+  let days = 0,
+    hours = 0,
+    minutes = 0,
+    seconds = 0;
+  let daysPart = "0";
   let timePart = t;
 
   // days vs day check
-  if (t.includes(' days ')) {
-    [daysPart, timePart] = t.split(' days ');
+  if (t.includes(" days ")) {
+    [daysPart, timePart] = t.split(" days ");
   }
 
-  const timeParts = timePart.split(' ');
+  const timeParts = timePart.split(" ");
 
   for (let i = 0; i < timeParts.length; i += 2) {
     const val = parseInt(timeParts[i]);
     switch (timeParts[i + 1]) {
-      case 'hours':
+      case "hours":
         hours = val;
         break;
-      case 'minutes':
+      case "minutes":
         minutes = val;
         break;
-      case 'seconds':
+      case "seconds":
         seconds = val;
         break;
     }
@@ -5728,14 +5962,8 @@ function timeStringToSeconds(t) {
 
   days = parseInt(daysPart);
 
-  return (
-    days * 86400 +
-    hours * 3600 +
-    minutes * 60 +
-    seconds
-  );
+  return days * 86400 + hours * 3600 + minutes * 60 + seconds;
 }
-
 
 window.addEventListener("load", function () {
   document
@@ -5748,10 +5976,7 @@ window.addEventListener("load", function () {
             .find(".offense-item-offense")
             .html()
             .toLowerCase();
-          const Number = $(this)
-            .find(".offense-item-id")
-            .html()
-            .toLowerCase();
+          const Number = $(this).find(".offense-item-id").html().toLowerCase();
           if (Name.includes(search)) {
             $(this).show();
           } else if (Number.includes(search)) {
@@ -5768,42 +5993,40 @@ window.addEventListener("load", function () {
     });
 });
 
-
-          // Dispatch Map //
+// Dispatch Map //
 customcrs = L.extend({}, L.CRS.Simple, {
   projection: L.Projection.LonLat,
-  scale: function(zoom) {
-
-      return Math.pow(2, zoom);
+  scale: function (zoom) {
+    return Math.pow(2, zoom);
   },
-  zoom: function(sc) {
-
-      return Math.log(sc) / 0.6931471805599453;
+  zoom: function (sc) {
+    return Math.log(sc) / 0.6931471805599453;
   },
-  distance: function(pos1, pos2) {
-      var x_difference = pos2.lng - pos1.lng;
-      var y_difference = pos2.lat - pos1.lat;
-      return Math.sqrt(x_difference * x_difference + y_difference * y_difference);
+  distance: function (pos1, pos2) {
+    var x_difference = pos2.lng - pos1.lng;
+    var y_difference = pos2.lat - pos1.lat;
+    return Math.sqrt(x_difference * x_difference + y_difference * y_difference);
   },
   transformation: new L.Transformation(0.02072, 117.3, -0.0205, 172.8),
-  infinite: false
+  infinite: false,
 });
 
 var map = L.map("map-item", {
-crs: customcrs,
-minZoom: 3,
-maxZoom: 5,
-zoom: 5,
+  crs: customcrs,
+  minZoom: 3,
+  maxZoom: 5,
+  zoom: 5,
 
-noWrap: true,
-continuousWorld: false,
-preferCanvas: true,
+  noWrap: true,
+  continuousWorld: false,
+  preferCanvas: true,
 
-center: [0, -1024],
-maxBoundsViscosity: 1.0
+  center: [0, -1024],
+  maxBoundsViscosity: 1.0,
 });
- // https://upload.versescripts.net/ 
-var customImageUrl = 'https://files.fivemerr.com/images/a62a84ff-6a1b-4dc4-a199-c7140a216703.jpg';
+// https://upload.versescripts.net/
+var customImageUrl =
+  "https://files.fivemerr.com/images/a62a84ff-6a1b-4dc4-a199-c7140a216703.jpg";
 
 var sw = map.unproject([0, 1024], 3 - 1);
 var ne = map.unproject([1024, 0], 3 - 1);
@@ -5811,14 +6034,13 @@ var mapbounds = new L.LatLngBounds(sw, ne);
 map.setView([-300, -1500], 4);
 map.setMaxBounds(mapbounds);
 
-
-map.attributionControl.setPrefix(false)
+map.attributionControl.setPrefix(false);
 
 L.imageOverlay(customImageUrl, mapbounds).addTo(map);
 
-map.on('dragend', function() {
+map.on("dragend", function () {
   if (!mapbounds.contains(map.getCenter())) {
-      map.panTo(mapbounds.getCenter(), { animate: false });
+    map.panTo(mapbounds.getCenter(), { animate: false });
   }
 });
 
@@ -5826,68 +6048,69 @@ var Dispatches = {};
 var DispatchPing = L.divIcon({
   html: '<i class="fa fa-location-dot fa-2x"></i>',
   iconSize: [20, 20],
-  className: 'map-icon map-icon-ping',
-  offset: [-10, 0]
+  className: "map-icon map-icon-ping",
+  offset: [-10, 0],
 });
 var mapMarkers = L.layerGroup();
 
 function DispatchMAP(DISPATCH) {
-  var MIN = Math.round(Math.round((new Date() - new Date(DISPATCH.time)) / 1000) / 60);
+  var MIN = Math.round(
+    Math.round((new Date() - new Date(DISPATCH.time)) / 1000) / 60
+  );
   if (MIN > 10) return;
 
-  var COORDS_X = DISPATCH.coords.x
-  var COORDS_Y = DISPATCH.coords.y
-  var CODE = DISPATCH.id
+  var COORDS_X = DISPATCH.coords.x;
+  var COORDS_Y = DISPATCH.coords.y;
+  var CODE = DISPATCH.id;
 
   Dispatches[CODE] = L.marker([COORDS_Y, COORDS_X], { icon: DispatchPing });
   Dispatches[CODE].addTo(map);
 
   // Automatic deletion after a period of 20 minutes, equivalent to 1200000 milliseconds.
-  setTimeout(function() {
+  setTimeout(function () {
     map.removeLayer(Dispatches[CODE]);
   }, 1200000);
 
-  Dispatches[CODE].bindTooltip(`<div class="map-tooltip-info">${DISPATCH.message}</div></div><div class="map-tooltip-id">#${DISPATCH.id}</div>`,
-      {
-          direction: 'top',
-          permanent: false,
-          offset: [0, -10],
-          opacity: 1,
-          interactive: true,
-          className: 'map-tooltip'
-  });
+  Dispatches[CODE].bindTooltip(
+    `<div class="map-tooltip-info">${DISPATCH.message}</div></div><div class="map-tooltip-id">#${DISPATCH.id}</div>`,
+    {
+      direction: "top",
+      permanent: false,
+      offset: [0, -10],
+      opacity: 1,
+      interactive: true,
+      className: "map-tooltip",
+    }
+  );
 
   Dispatches[CODE].addTo(mapMarkers);
 
-  Dispatches[CODE].on('click', function() {
-      const callId = CODE
-      $.post(
-          `https://${GetParentResourceName()}/setWaypoint`,
-          JSON.stringify({
-              callid: callId,
-          })
-      );
+  Dispatches[CODE].on("click", function () {
+    const callId = CODE;
+    $.post(
+      `https://${GetParentResourceName()}/setWaypoint`,
+      JSON.stringify({
+        callid: callId,
+      })
+    );
   });
 
-  Dispatches[CODE].on('contextmenu', function() {
-      map.removeLayer(Dispatches[CODE]);
+  Dispatches[CODE].on("contextmenu", function () {
+    map.removeLayer(Dispatches[CODE]);
   });
-
 }
 
 function ClearMap() {
-$(".leaflet-popup-pane").empty();
-$(".leaflet-marker-pane").empty();
+  $(".leaflet-popup-pane").empty();
+  $(".leaflet-marker-pane").empty();
 }
 
-$(".map-clear").on('click', function() {
+$(".map-clear").on("click", function () {
+  $(".map-clear").empty();
+  $(".map-clear").prepend(`<span class="fas fa-spinner fa-spin"></span>`);
+  setTimeout(() => {
     $(".map-clear").empty();
-    $(".map-clear").prepend(
-      `<span class="fas fa-spinner fa-spin"></span>`
-    );
-    setTimeout(() => {
-      $(".map-clear").empty();
-      $(".map-clear").html("Clear");
-      ClearMap();
-    }, 1500);
+    $(".map-clear").html("Clear");
+    ClearMap();
+  }, 1500);
 });

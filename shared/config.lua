@@ -1,7 +1,7 @@
 Config = Config or {}
 
-Config.UsingPsHousing = false
-Config.UsingDefaultQBApartments = true
+Config.UsingPsHousing = true
+Config.UsingDefaultQBApartments = false
 Config.OnlyShowOnDuty = true
 
 -- RECOMMENDED Fivemerr Images. DOES NOT EXPIRE. 
@@ -27,16 +27,16 @@ Config.QBBankingUse = false
 -- Set up your inventory to automatically retrieve images when a weapon is registered at a weapon shop or self-registered.
 -- If you're utilizing lj-inventory's latest version from GitHub, no further modifications are necessary. 
 -- However, if you're using a different inventory system, please refer to the "Inventory Edit | Automatic Add Weapons with images" section in ps-mdt's README.
-Config.InventoryForWeaponsImages = "lj-inventory"
+Config.InventoryForWeaponsImages = "ox-inventory"
 
 -- Only compatible with ox_inventory
-Config.RegisterWeaponsAutomatically = true
+Config.RegisterWeaponsAutomatically = false
 
 -- Set to true to register all weapons that are added via AddItem in ox_inventory
-Config.RegisterCreatedWeapons = true
+Config.RegisterCreatedWeapons = false
 
 -- "LegacyFuel", "lj-fuel", "ps-fuel"
-Config.Fuel = "ps-fuel"
+Config.Fuel = "qb-fuel"
 
 -- Google Docs Link
 Config.sopLink = {
